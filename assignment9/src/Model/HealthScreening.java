@@ -1,4 +1,6 @@
-package program;
+package Model;
+
+import View.HSInputWindow;
 
 public class HealthScreening {
 
