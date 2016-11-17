@@ -6,7 +6,18 @@
 package bodyprogram;
 
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.math.RoundingMode;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -359,9 +370,57 @@ public class GUI extends javax.swing.JFrame {
 
     private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateReportActionPerformed
         if(checkAllFields()){
+        	String[] patientInfo = {txtPatientName.getText(),txtDate.getDate().toString(),txtAge.getText(),txtPatientHeight1.getText(),txtPatientHeight2.getText(),txtPatientWeight.getText(),txtCholesterol.getText(),txtBMI.getText(),txtBloodPressure.getText()};
+    		String date = "1";
+    		String line = "";
+    	try{
+            URL url = new URL("http://www.sullens.net/~sice/PHP5/insertRecord.php");
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+            String post_data =    URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(patientInfo[0],"UTF-8")+"&"+
+                    URLEncoder.encode("date","UTF-8")+"="+URLEncoder.encode(patientInfo[1],"UTF-8")+"&"+
+            		URLEncoder.encode("age","UTF-8")+"="+URLEncoder.encode(patientInfo[2],"UTF-8")+"&"+
+            		URLEncoder.encode("feet","UTF-8")+"="+URLEncoder.encode(patientInfo[3],"UTF-8")+"&"+
+            		URLEncoder.encode("inches","UTF-8")+"="+URLEncoder.encode(patientInfo[4],"UTF-8")+"&"+
+            		URLEncoder.encode("weight","UTF-8")+"="+URLEncoder.encode(patientInfo[5],"UTF-8")+"&"+
+            		URLEncoder.encode("cholesterol","UTF-8")+"="+URLEncoder.encode(patientInfo[6],"UTF-8")+"&"+
+            		URLEncoder.encode("bmi","UTF-8")+"="+URLEncoder.encode(patientInfo[7],"UTF-8")+"&"+
+            		URLEncoder.encode("pressure","UTF-8")+"="+URLEncoder.encode(patientInfo[8],"UTF-8");
+//System.out.println(post_data);
+            bufferedWriter.write(post_data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+      
+            httpURLConnection.disconnect();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
             
+            while ((line = bufferedReader.readLine()) != null) {
+                String newLine = line;
+             System.out.println(newLine);
+            }
+          
+            bufferedReader.close();
+            inputStream.close();
+
+        }catch(MalformedURLException e){
+            e.printStackTrace();
+        } catch(IOException e){
+            e.printStackTrace();
         }
-    }//GEN-LAST:event_btnGenerateReportActionPerformed
+
+
+
+    }  
+        }
+    //GEN-LAST:event_btnGenerateReportActionPerformed
 
     private void txtPatientHeight1_FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPatientHeight1_FocusLost
         checkHeights(CHECK_FEET);
