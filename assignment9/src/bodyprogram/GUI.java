@@ -5,7 +5,10 @@
  */
 package bodyprogram;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -22,6 +25,8 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import javax.swing.JFileChooser;
+
+import org.json.JSONException;
 
 /**
  *
@@ -76,8 +81,9 @@ public class GUI extends javax.swing.JFrame {
         btnFileMenu = new javax.swing.JMenu();
         btnOpenFile = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         btnCalculateBMI = new javax.swing.JMenuItem();
-
+        searchRecords = new javax.swing.JMenuItem();
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -295,9 +301,20 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         jMenu1.add(btnCalculateBMI);
+        
+        jMenu2.setText("Search");
+       searchRecords.setText("Search by name");
+       
+       searchRecords.addActionListener(new java.awt.event.ActionListener() {
+    	   public void actionPerformed(java.awt.event.ActionEvent evt) {
+           btnSearchRecordActionPerformed(evt);
+       }
+   });
 
+jMenu2.add(searchRecords);
+       
         jMenuBar1.add(jMenu1);
-
+        jMenuBar1.add(jMenu2);
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -368,57 +385,94 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCalculateBMIActionPerformed
 
+    private void  btnSearchRecordActionPerformed(java.awt.event.ActionEvent evt){
+    	
+    	javax.swing.JFrame searchFrame = new javax.swing.JFrame();
+    	
+    	
+    	
+    	
+    	searchFrame.setSize(new Dimension(500,500));
+    	
+    	searchFrame.setLocationRelativeTo(null);
+    	
+    	javax.swing.JTextArea dbResults = new javax.swing.JTextArea(5,30);
+    	
+    
+    	
+    	
+    	javax.swing.JPanel NorthPanel = new javax.swing.JPanel();
+    	
+    	NorthPanel.setLayout(new GridLayout(1,3));
+    	
+    	
+    	
+    	javax.swing.JLabel newLabel = new javax.swing.JLabel();
+    	javax.swing.JTextField newField = new javax.swing.JTextField();
+    	javax.swing.JButton btnSearch = new javax.swing.JButton();
+    	
+    	btnSearch.setText("search records");
+    	
+    	
+    	newLabel.setText("Enter Name: ");
+    	newLabel.setSize(new Dimension(200,30));
+    	
+    	btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	DataBase search = new DataBase(null);
+            	
+            	
+            	
+            	try {
+            		dbResults.setText(search.search(1,newField.getText()));
+        			
+        		} catch (JSONException e) {
+        			// TODO Auto-generated catch block
+        			dbResults.setText("no records found");
+        		}
+            
+            }
+        });
+    	
+    	NorthPanel.add(newLabel);
+    	NorthPanel.add(newField);
+    	NorthPanel.add(btnSearch);
+    	
+    	
+    	
+    	javax.swing.JScrollPane records = new javax.swing.JScrollPane(dbResults);
+    	
+    	records.setSize(new Dimension(200,200));
+    	
+    	searchFrame.add(NorthPanel, BorderLayout.NORTH);
+    	searchFrame.add(records,BorderLayout.CENTER);
+    	
+
+    	
+    	searchFrame.pack();
+    	
+    	
+    	searchFrame.setVisible(true);
+    	
+    	
+
+    
+    	
+    }
     private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateReportActionPerformed
         if(checkAllFields()){
         	String[] patientInfo = {txtPatientName.getText(),txtDate.getDate().toString(),txtAge.getText(),txtPatientHeight1.getText(),txtPatientHeight2.getText(),txtPatientWeight.getText(),txtCholesterol.getText(),txtBMI.getText(),txtBloodPressure.getText()};
     		String date = "1";
     		String line = "";
-    	try{
-            URL url = new URL("http://www.sullens.net/~sice/PHP5/insertRecord.php");
-            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setRequestMethod("POST");
-            httpURLConnection.setDoOutput(true);
-            httpURLConnection.setDoInput(true);
-            OutputStream outputStream = httpURLConnection.getOutputStream();
-            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
-            String post_data =    URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(patientInfo[0],"UTF-8")+"&"+
-                    URLEncoder.encode("date","UTF-8")+"="+URLEncoder.encode(patientInfo[1],"UTF-8")+"&"+
-            		URLEncoder.encode("age","UTF-8")+"="+URLEncoder.encode(patientInfo[2],"UTF-8")+"&"+
-            		URLEncoder.encode("feet","UTF-8")+"="+URLEncoder.encode(patientInfo[3],"UTF-8")+"&"+
-            		URLEncoder.encode("inches","UTF-8")+"="+URLEncoder.encode(patientInfo[4],"UTF-8")+"&"+
-            		URLEncoder.encode("weight","UTF-8")+"="+URLEncoder.encode(patientInfo[5],"UTF-8")+"&"+
-            		URLEncoder.encode("cholesterol","UTF-8")+"="+URLEncoder.encode(patientInfo[6],"UTF-8")+"&"+
-            		URLEncoder.encode("bmi","UTF-8")+"="+URLEncoder.encode(patientInfo[7],"UTF-8")+"&"+
-            		URLEncoder.encode("pressure","UTF-8")+"="+URLEncoder.encode(patientInfo[8],"UTF-8");
-//System.out.println(post_data);
-            bufferedWriter.write(post_data);
-            bufferedWriter.flush();
-            bufferedWriter.close();
-            outputStream.close();
-      
-            httpURLConnection.disconnect();
-
-            InputStream inputStream = httpURLConnection.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-
-            
-            while ((line = bufferedReader.readLine()) != null) {
-                String newLine = line;
-             System.out.println(newLine);
-            }
-          
-            bufferedReader.close();
-            inputStream.close();
-
-        }catch(MalformedURLException e){
-            e.printStackTrace();
-        } catch(IOException e){
-            e.printStackTrace();
+    		
+    		
+    		DataBase insert = new DataBase(patientInfo);
+    		
+    		insert.insertRecord();
+    		
+    		
+    		
         }
-
-
-
-    }  
         }
     //GEN-LAST:event_btnGenerateReportActionPerformed
 
@@ -548,6 +602,7 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnCalculateBMI;
+    private javax.swing.JMenuItem searchRecords;
     private javax.swing.JMenu btnFileMenu;
     private javax.swing.JButton btnGenerateReport;
     private javax.swing.JMenuItem btnOpenFile;
@@ -562,6 +617,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblPatientHeightUnit1;
     private javax.swing.JLabel lblPatientHeightUnit2;
