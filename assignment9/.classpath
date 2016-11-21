@@ -4,6 +4,14 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="src/bodyprogram/swingx-all.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Stan/Downloads/json-1.5-20090211.jar"/>
+	<classpathentry kind="lib" path="src/axis.jar"/>
+	<classpathentry kind="lib" path="src/bmi-service.jar"/>
+	<classpathentry kind="lib" path="src/commons-discovery-0.2.jar"/>
+	<classpathentry kind="lib" path="src/googlechartwrapper_1.1.jar"/>
+	<classpathentry kind="lib" path="src/javax.wsdl_1.6.2.v201012040545.jar"/>
+	<classpathentry kind="lib" path="src/jaxrpc.jar"/>
+	<classpathentry kind="lib" path="src/org.apache.commons.logging_1.0.4.v201101211617.jar"/>
+	<classpathentry kind="lib" path="src/saaj.jar"/>
+	<classpathentry kind="lib" path="src/bodyprogram/json-1.5-20090211.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
