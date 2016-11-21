@@ -27,6 +27,21 @@ import java.text.ParseException;
 import javax.swing.JFileChooser;
 
 import org.json.JSONException;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JLabel;
+import javax.swing.JFormattedTextField;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -71,12 +86,46 @@ public class GUI extends javax.swing.JFrame {
         btnGenerateReport = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtCholesterol = new javax.swing.JFormattedTextField();
+        txtCholesterol.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyPressed(KeyEvent e) {
+        		if (e.getKeyChar() == KeyEvent.VK_ENTER){
+        			indicateCholesterolRisk();
+        		};
+        	}
+        });
+        txtCholesterol.addFocusListener(new FocusAdapter() {
+        	@Override
+        	public void focusLost(FocusEvent arg0) {
+    			indicateCholesterolRisk();
+        	}
+        });
         jLabel6 = new javax.swing.JLabel();
         txtAge = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         txtBMI = new javax.swing.JFormattedTextField();
+        txtBMI.addFocusListener(new FocusAdapter() {
+        	@Override
+        	public void focusLost(FocusEvent arg0) {
+    			indicateBMIRisk();
+        	}
+        });
+        txtBMI.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyPressed(KeyEvent e) {
+        		if (e.getKeyChar() == KeyEvent.VK_ENTER){
+        			indicateBMIRisk();
+        		};
+        	}
+        });
         jLabel8 = new javax.swing.JLabel();
         txtBloodPressure = new javax.swing.JTextField();
+        txtBloodPressure.addFocusListener(new FocusAdapter() {
+        	@Override
+        	public void focusLost(FocusEvent arg0) {
+    			indicateBloodPressureRisk();
+        	}
+        });
         jMenuBar1 = new javax.swing.JMenuBar();
         btnFileMenu = new javax.swing.JMenu();
         btnOpenFile = new javax.swing.JMenuItem();
@@ -186,95 +235,126 @@ public class GUI extends javax.swing.JFrame {
                 txtBloodPressure_TextChanged(evt);
             }
         });
+        
+        JLabel lblLbs = new JLabel();
+        lblLbs.setText("lbs");
+        lblLbs.setName("lblPatientHeightLeftUnit");
+        
+        txtCholesterolIndicator = new JTextField();
+        txtCholesterolIndicator.setEditable(false);
+        txtCholesterolIndicator.setColumns(10);
+        
+        txtBMIIndicator = new JTextField();
+        txtBMIIndicator.setEditable(false);
+        txtBMIIndicator.setColumns(10);
+        
+        txtBloodPressureIndicator = new JTextField();
+        txtBloodPressureIndicator.setEditable(false);
+        txtBloodPressureIndicator.setColumns(10);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtPatientHeight1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2)
-                                .addComponent(lblPatientHeightUnit1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPatientHeight2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPatientHeightUnit2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtAge))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txtBMI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                                            .addComponent(txtPatientWeight, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtCholesterol, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel8)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtBloodPressure, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addContainerGap())))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGenerateReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        	jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(jPanel1Layout.createSequentialGroup()
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(jPanel1Layout.createSequentialGroup()
+        					.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(jLabel8)
+        						.addComponent(jLabel7)
+        						.addComponent(jLabel5))
+        					.addGap(6)
+        					.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING, false)
+        						.addComponent(txtBloodPressure)
+        						.addComponent(txtBMI)
+        						.addComponent(txtCholesterol, GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE))
+        					.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        						.addGroup(jPanel1Layout.createSequentialGroup()
+        							.addGap(18)
+        							.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        								.addComponent(txtCholesterolIndicator, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+        								.addComponent(txtBMIIndicator, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)))
+        						.addGroup(jPanel1Layout.createSequentialGroup()
+        							.addGap(18)
+        							.addComponent(txtBloodPressureIndicator, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))))
+        				.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING, false)
+        					.addGroup(jPanel1Layout.createSequentialGroup()
+        						.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        							.addComponent(jLabel1)
+        							.addGroup(jPanel1Layout.createSequentialGroup()
+        								.addComponent(jLabel3)
+        								.addPreferredGap(ComponentPlacement.UNRELATED)
+        								.addComponent(txtPatientWeight, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)))
+        						.addPreferredGap(ComponentPlacement.RELATED)
+        						.addComponent(lblLbs, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+        						.addPreferredGap(ComponentPlacement.RELATED)
+        						.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
+        							.addGroup(jPanel1Layout.createSequentialGroup()
+        								.addComponent(txtPatientName, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+        								.addPreferredGap(ComponentPlacement.RELATED)
+        								.addComponent(jLabel6)
+        								.addPreferredGap(ComponentPlacement.RELATED)
+        								.addComponent(txtAge, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
+        							.addGroup(jPanel1Layout.createSequentialGroup()
+        								.addComponent(jLabel2)
+        								.addGap(10)
+        								.addComponent(txtPatientHeight1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+        								.addPreferredGap(ComponentPlacement.RELATED)
+        								.addComponent(lblPatientHeightUnit1)
+        								.addPreferredGap(ComponentPlacement.UNRELATED)
+        								.addComponent(txtPatientHeight2, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+        								.addPreferredGap(ComponentPlacement.RELATED)
+        								.addComponent(lblPatientHeightUnit2)
+        								.addGap(14))))
+        					.addComponent(jLabel4)
+        					.addGroup(jPanel1Layout.createSequentialGroup()
+        						.addComponent(txtDate, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
+        						.addPreferredGap(ComponentPlacement.RELATED)
+        						.addComponent(btnGenerateReport, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        			.addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtPatientHeight1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPatientHeightUnit1)
-                    .addComponent(txtPatientHeight2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPatientHeightUnit2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtPatientWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtCholesterol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtBMI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtBloodPressure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGenerateReport)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14))
+        	jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(jPanel1Layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jLabel1)
+        				.addComponent(txtPatientName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jLabel6)
+        				.addComponent(txtAge, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(txtPatientHeight2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblPatientHeightUnit1)
+        				.addComponent(jLabel2)
+        				.addComponent(jLabel3)
+        				.addComponent(txtPatientHeight1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblPatientHeightUnit2)
+        				.addComponent(txtPatientWeight, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(lblLbs))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(txtCholesterol, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(jLabel5)
+        				.addComponent(txtCholesterolIndicator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jLabel7)
+        				.addComponent(txtBMI, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(txtBMIIndicator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(jLabel8)
+        				.addComponent(txtBloodPressure, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(txtBloodPressureIndicator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addPreferredGap(ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+        			.addComponent(jLabel4)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(btnGenerateReport)
+        				.addComponent(txtDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(15))
         );
+        jPanel1.setLayout(jPanel1Layout);
 
         lblPatientHeightUnit1.getAccessibleContext().setAccessibleName("jLabel4");
 
@@ -318,21 +398,18 @@ jMenu2.add(searchRecords);
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        			.addContainerGap(28, Short.MAX_VALUE)
+        			.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, 424, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.TRAILING)
+        		.addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -353,6 +430,9 @@ jMenu2.add(searchRecords);
 
     private void txtBloodPressure_TextChanged(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBloodPressure_TextChanged
         checkBloodPressure();
+		if (evt.getKeyChar() == KeyEvent.VK_ENTER){
+			indicateBloodPressureRisk();
+		};
     }//GEN-LAST:event_txtBloodPressure_TextChanged
 
     private void txtPatientWeight_TextChange(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPatientWeight_TextChange
@@ -444,8 +524,8 @@ jMenu2.add(searchRecords);
     	
     	records.setSize(new Dimension(200,200));
     	
-    	searchFrame.add(NorthPanel, BorderLayout.NORTH);
-    	searchFrame.add(records,BorderLayout.CENTER);
+    	searchFrame.getContentPane().add(NorthPanel, BorderLayout.NORTH);
+    	searchFrame.getContentPane().add(records,BorderLayout.CENTER);
     	
 
     	
@@ -630,5 +710,77 @@ jMenu2.add(searchRecords);
     private javax.swing.JFormattedTextField txtPatientHeight2;
     private javax.swing.JTextField txtPatientName;
     private javax.swing.JFormattedTextField txtPatientWeight;
-    // End of variables declaration//GEN-END:variables
+    private JTextField txtCholesterolIndicator;
+    private JTextField txtBMIIndicator;
+    private JTextField txtBloodPressureIndicator;
+
+	private void indicateBMIRisk() {
+		String Indicator ="";
+		if (txtBMI.getText().isEmpty()){
+			Indicator="";
+		} else {
+		double value = Double.parseDouble(txtBMI.getText());
+		if  (value  < 18.5) {
+			Indicator="UNDERWEIGHT";
+		} else 
+		if  (value  >= 18.5 & value<= 24.9) {
+			Indicator="NORMAL";
+		} else 
+    		if  (value  >= 25.0 & value<= 29.9) {
+    			Indicator="OVERWEIGHT";
+    	} else {
+			Indicator="OBESE";
+    	};
+		};
+		txtBMIIndicator.setText(Indicator);
+	}
+	private void indicateCholesterolRisk() {
+		String Indicator ="";
+		if (txtCholesterol.getText().isEmpty()){
+			Indicator="";
+		} else {
+			double value = Conversion.SafeParseInteger(txtCholesterol.getText());
+			Indicator ="BORDERLINE HIGH";
+			if  (value  < 200) {
+				Indicator="DESIRABLE";
+			}
+			if  (value  >= 240) {
+				Indicator="HIGH";
+			};
+		};
+		txtCholesterolIndicator.setText(Indicator);
+	}
+	private void indicateBloodPressureRisk() {
+		String Indicator ="";
+		if (txtBloodPressure.getText().isEmpty()){
+			Indicator="";
+		} else {
+			int systolic =0;
+			int diastolic =0;
+			int positionOfSlash;
+			String bp = txtBloodPressure.getText();
+			int lengthOfBP = txtBloodPressure.getText().length();
+			positionOfSlash = txtBloodPressure.getText().indexOf('/');
+			
+			systolic = Conversion.SafeParseInteger(bp.substring(0, positionOfSlash));
+			diastolic = Conversion.SafeParseInteger(bp.substring(positionOfSlash+1,lengthOfBP));
+			//Indicator=Integer.toString(systolic)+";;"+Integer.toString(diastolic)+";;"+Integer.toString(positionOfSlash);
+			if (systolic < 120 & diastolic < 80){
+				Indicator="NORMAL";
+			}
+			if (120 <= systolic & systolic <= 139 | 80 <= diastolic & diastolic <= 89) {
+				Indicator="PREHYPERTENSION";
+			}
+			if (140 <= systolic & systolic <= 159 | 90 <= diastolic & diastolic <= 99) {
+				Indicator="STAGE 1 HYPERTENSION ";
+			}
+			if (160 <= systolic & systolic <= 180 | 100 <= diastolic & diastolic <= 110) {
+				Indicator="STAGE 2 HYPERTENSION ";
+			}
+			if (systolic > 180 | diastolic > 110) {
+				Indicator="HYPERTENSIVE CRISIS";
+			}
+		};
+		txtBloodPressureIndicator.setText(Indicator);
+	}
 }
