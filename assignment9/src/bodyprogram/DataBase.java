@@ -125,15 +125,15 @@ public String search(int choice,String searchTerm) throws JSONException{
         
         for (int x = 0; x < jsonArray.length(); x++) {
             JSONObject jsonObject = jsonArray.getJSONObject(x);
-             printme += jsonObject.optString("name")
-            		+ " " + jsonObject.optString("date")
-            		+ " " +jsonObject.optString("age")
-            		+ " " +jsonObject.optString("feet")
-            		+ " " +jsonObject.optString("inches")
-            		+ " " +jsonObject.optString("weight")
-            		+ " " +jsonObject.optString("cholesterol")
-            		+ " " +jsonObject.optString("bmi")
-            		+ " " +jsonObject.optString("pressure") + "\n";
+             printme += "Health Screening for " + jsonObject.optString("name")
+            		+ "\nDate: " + jsonObject.optString("date")
+            		+ "\nAge: " +jsonObject.optString("age")
+            		+ "\tHeight: " +jsonObject.optString("feet")
+            		+ "' " +jsonObject.optString("inches")
+            		+ "'\tWeight: " +jsonObject.optString("weight")
+            		+ "\nTotal Cholesterol: " +jsonObject.optString("cholesterol")
+            		+ "\nBody Mass Index: " +jsonObject.optString("bmi")
+            		+ "\nBlood Pressure: " +jsonObject.optString("pressure") + "\n\n";
             		
 
 
@@ -148,7 +148,9 @@ public String search(int choice,String searchTerm) throws JSONException{
     } catch(IOException e){
         e.printStackTrace();
     }	
-	
+	if(printme.equals("")){
+		return "no records found";
+	}
 
 	return printme;
 	
