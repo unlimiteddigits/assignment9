@@ -39,6 +39,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.ActionListener;
@@ -479,7 +480,9 @@ jMenu2.add(searchRecords);
 		searchFrame.setResizable(false);
 
 		javax.swing.JTextArea dbResults = new javax.swing.JTextArea(5, 30);
-
+		
+		dbResults.setEditable(false);
+		
 		javax.swing.JPanel NorthPanel = new javax.swing.JPanel();
 
 		NorthPanel.setLayout(new GridBagLayout());
@@ -540,6 +543,7 @@ jMenu2.add(searchRecords);
 
 		javax.swing.JScrollPane records = new javax.swing.JScrollPane(dbResults);
 
+		
 		records.setSize(new Dimension(200, 200));
 
 		searchFrame.add(NorthPanel, BorderLayout.NORTH);
