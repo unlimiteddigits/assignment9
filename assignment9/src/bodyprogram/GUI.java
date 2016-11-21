@@ -46,6 +46,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  *
@@ -479,6 +480,7 @@ jMenu2.add(searchRecords);
 		searchFrame.setLocationRelativeTo(null);
 		searchFrame.setResizable(false);
 
+
 		javax.swing.JTextArea dbResults = new javax.swing.JTextArea(5, 30);
 		
 		dbResults.setEditable(false);
@@ -525,9 +527,53 @@ jMenu2.add(searchRecords);
 
 		newField.requestFocusInWindow();
 		newLabel.setText("Enter Name: ");
+		
+		class MyAdapter implements ActionListener, KeyListener{
 
-		btnSearch.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			@Override
+			public void keyPressed(KeyEvent evt) {
+			 
+			    	DataBase search = new DataBase(null);
+
+					try {
+						dbResults.setText(search.search(1, newField.getText()));
+
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+			    
+			}
+
+		
+
+	
+				
+				
+	
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+
+
+
+
+
+
+
+			@Override
+			public void actionPerformed(ActionEvent evt) {
 				DataBase search = new DataBase(null);
 
 				try {
@@ -538,8 +584,23 @@ jMenu2.add(searchRecords);
 					e.printStackTrace();
 				}
 
+				
 			}
-		});
+			
+			
+			
+			
+		}
+
+	MyAdapter adapter = new MyAdapter();
+
+	newField.addActionListener(adapter);		
+	btnSearch.addActionListener(adapter);
+	
+	
+		
+		searchFrame.getRootPane().setDefaultButton(btnSearch);
+		
 
 		javax.swing.JScrollPane records = new javax.swing.JScrollPane(dbResults);
 
