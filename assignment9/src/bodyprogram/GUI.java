@@ -462,6 +462,7 @@ jMenu2.add(searchRecords);
             }else{
                 txtBMI.setBackground(Color.PINK);
             }
+            indicateBMIRisk();
         }
     }//GEN-LAST:event_btnCalculateBMIActionPerformed
 
