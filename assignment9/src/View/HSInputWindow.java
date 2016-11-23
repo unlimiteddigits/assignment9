@@ -98,12 +98,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 		jLabel5 = new javax.swing.JLabel();
 		txtCholesterol = new javax.swing.JFormattedTextField();
 	
-//		txtCholesterol.addFocusListener(new FocusAdapter() {
-//			@Override
-//			public void focusLost(FocusEvent arg0) {
-//				indicateCholesterolRisk();
-//			}
-//		});
+
 		jLabel6 = new javax.swing.JLabel();
 		txtAge = new javax.swing.JFormattedTextField();
 		jLabel7 = new javax.swing.JLabel();
@@ -125,12 +120,12 @@ public class HSInputWindow extends javax.swing.JFrame {
 		});
 		jLabel8 = new javax.swing.JLabel();
 		txtBloodPressure = new javax.swing.JTextField();
-		txtBloodPressure.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				indicateBloodPressureRisk();
-			}
-		});
+//		txtBloodPressure.addFocusListener(new FocusAdapter() {
+//			@Override
+//			public void focusLost(FocusEvent arg0) {
+//				indicateBloodPressureRisk();
+//			}
+//		});
 		jMenuBar1 = new javax.swing.JMenuBar();
 		btnFileMenu = new javax.swing.JMenu();
 		btnOpenFile = new javax.swing.JMenuItem();
@@ -242,11 +237,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 		jLabel8.setText("Blood Pressure:");
 
 		txtBloodPressure.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-		txtBloodPressure.addKeyListener(new java.awt.event.KeyAdapter() {
-			public void keyTyped(java.awt.event.KeyEvent evt) {
-				txtBloodPressure_TextChanged(evt);
-			}
-		});
+	
 
 		JLabel lblLbs = new JLabel();
 		lblLbs.setText("lbs");
@@ -444,18 +435,13 @@ public class HSInputWindow extends javax.swing.JFrame {
 		}
 	}// GEN-LAST:event_btnOpenFileActionPerformed
 
-	private void txtBloodPressure_TextChanged(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtBloodPressure_TextChanged
-		checkBloodPressure();
-		if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-			indicateBloodPressureRisk();
-		}
-		;
-	}// GEN-LAST:event_txtBloodPressure_TextChanged
+
 
 	private void txtPatientWeight_TextChange(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtPatientWeight_TextChange
 		checkWeight();
 	}// GEN-LAST:event_txtPatientWeight_TextChange
 
+	
 	private void txtPatientHeight_TextChange(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtPatientHeight_TextChange
 		checkHeights(CHECK_FEET);
 	}// GEN-LAST:event_txtPatientHeight_TextChange
@@ -966,47 +952,33 @@ public class HSInputWindow extends javax.swing.JFrame {
 		txtCholesterolIndicator.setText(indicator);
 	}
 	
+	public void setBloodPressureIndicator(String inidcator){
+		txtBloodPressureIndicator.setText(inidcator);
+	}
+	
+	public String getBloodPressureText(){
+		return txtBloodPressure.getText();
+	}
+	
 	public void setNameField(String name){
 		jLabel1.setText(name);
 	}
 
-	private void indicateBloodPressureRisk() {
-		String Indicator = "";
-		if (txtBloodPressure.getText().isEmpty()) {
-			Indicator = "";
-		} else {
-			int systolic = 0;
-			int diastolic = 0;
-			int positionOfSlash;
-			String bp = txtBloodPressure.getText();
-			int lengthOfBP = txtBloodPressure.getText().length();
-			positionOfSlash = txtBloodPressure.getText().indexOf('/');
-
-			systolic = Conversion.SafeParseInteger(bp.substring(0, positionOfSlash));
-			diastolic = Conversion.SafeParseInteger(bp.substring(positionOfSlash + 1, lengthOfBP));
-			// Indicator=Integer.toString(systolic)+";;"+Integer.toString(diastolic)+";;"+Integer.toString(positionOfSlash);
-			if (systolic < 120 & diastolic < 80) {
-				Indicator = "NORMAL";
-			}
-			if (120 <= systolic & systolic <= 139 | 80 <= diastolic & diastolic <= 89) {
-				Indicator = "PREHYPERTENSION";
-			}
-			if (140 <= systolic & systolic <= 159 | 90 <= diastolic & diastolic <= 99) {
-				Indicator = "STAGE 1 HYPERTENSION ";
-			}
-			if (160 <= systolic & systolic <= 180 | 100 <= diastolic & diastolic <= 110) {
-				Indicator = "STAGE 2 HYPERTENSION ";
-			}
-			if (systolic > 180 | diastolic > 110) {
-				Indicator = "HYPERTENSIVE CRISIS";
-			}
-		}
-		;
-		txtBloodPressureIndicator.setText(Indicator);
+	public void addBloodPressureKeyListener(KeyListener k){
+		txtBloodPressure.addKeyListener(k);
+		
 	}
 
+	public void addCholesteroldFieldFocusListener(FocusListener f){
+		txtCholesterol.addFocusListener(f);
+	}
 	
 	public void addCholesterolFieldKeyListener(KeyListener k){
 		txtCholesterol.addKeyListener(k);
 	}
+	
+	public void setBloodPressureBackground(Color color){
+		txtBloodPressure.setBackground(color);
+	}
+	
 }

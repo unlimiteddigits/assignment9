@@ -2,6 +2,9 @@ package control;
 
 
 
+import java.awt.Color;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -30,13 +33,44 @@ public class PatientInformationEntryController {
 		});
 		
 		
+		view.addCholesteroldFieldFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				setIndicator(view.getCholesterolText());
+			}
+		});
+		
+	
+		view.addBloodPressureKeyListener(new KeyAdapter() {
+			@Override
+			
+			public void keyPressed(KeyEvent e) {
+				if(!model.checkBloodPressure(view.getBloodPressureText())){
+					setViewBackground(Color.RED);
+					
+				}else{
+					setViewBackground(Color.WHITE);
+				}
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					setBloodPressureIndicator(view.getBloodPressureText());
+				}
+				;
+			}
+		});
 		
 		
 		
-	}
+	}	
+		
+		
+
 	
 	public void setIndicator(String indicator){
 		view.setRiskIndicator(model.indicateCholesterolRisk(indicator));
+	}
+	
+	public void setBloodPressureIndicator(String indicator){
+		view.setBloodPressureIndicator(model.indicateBloodPressureRisk(indicator));
 	}
 	
 	public void setPatientName(String name){
@@ -47,7 +81,11 @@ public class PatientInformationEntryController {
 		view.setNameField(model.getName());
 	}
 	
+	public void setViewBackground(Color color){
 	
+		view.setBloodPressureBackground(color);
+		
+	}
 	
 	
 	

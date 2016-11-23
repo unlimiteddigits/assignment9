@@ -17,7 +17,7 @@ public class TestDrive {
 		
 		
 		
-		controller.setNameField();
+		
 		
 		thisView.setVisible(true);
 		
