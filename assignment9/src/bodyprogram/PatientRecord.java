@@ -14,14 +14,38 @@ public class PatientRecord {
     private String bmi;
     private String bloodPressure;
     private String date;
-    
+    private String cholesterolRisk;
     public PatientRecord(final String name){
         this.name = name;
     }
     
+   public void setName(final String name){
+	   this.name = name;
+   }
+    
     public void setAge(final String age){
         this.age = age;
     }
+    
+    public String indicateCholesterolRisk(String cholesterol) {
+		String Indicator = "";
+		if (cholesterol.isEmpty()) {
+			Indicator = "";
+		} else {
+			double value = Conversion.SafeParseInteger(cholesterol);
+			Indicator = "BORDERLINE HIGH";
+			if (value < 200) {
+				Indicator = "DESIRABLE";
+			}
+			if (value >= 240) {
+				Indicator = "HIGH";
+			}
+			;
+		}
+		;
+		cholesterolRisk = Indicator;
+		return cholesterolRisk;
+	}
     
     public void setBloodPressure(final String bp){
         this.bloodPressure = bp;
@@ -48,6 +72,10 @@ public class PatientRecord {
         this.date = date;
     }
   
+    public String getName(){
+    	return name;
+    }
+    
     public String generateHTML(){
         StringBuilder html = new StringBuilder();
         html.append("<html>\n");
