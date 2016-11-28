@@ -36,6 +36,7 @@ import org.json.JSONException;
 import bodyprogram.Conversion;
 import bodyprogram.DataBase;
 import bodyprogram.RecordWindow;
+import javafx.scene.control.DatePicker;
 
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
@@ -61,8 +62,7 @@ import java.awt.event.KeyListener;
  */
 public class HSInputWindow extends javax.swing.JFrame {
 
-	public final byte CHECK_FEET = 0x20;
-	public final byte CHECK_INCHES = 0x08;
+	
 
 	/**
 	 * Creates new form GUI
@@ -103,29 +103,10 @@ public class HSInputWindow extends javax.swing.JFrame {
 		txtAge = new javax.swing.JFormattedTextField();
 		jLabel7 = new javax.swing.JLabel();
 		txtBMI = new javax.swing.JFormattedTextField();
-		txtBMI.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				indicateBMIRisk();
-			}
-		});
-		txtBMI.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-					indicateBMIRisk();
-				}
-				;
-			}
-		});
+
 		jLabel8 = new javax.swing.JLabel();
 		txtBloodPressure = new javax.swing.JTextField();
-//		txtBloodPressure.addFocusListener(new FocusAdapter() {
-//			@Override
-//			public void focusLost(FocusEvent arg0) {
-//				indicateBloodPressureRisk();
-//			}
-//		});
+
 		jMenuBar1 = new javax.swing.JMenuBar();
 		btnFileMenu = new javax.swing.JMenu();
 		btnOpenFile = new javax.swing.JMenuItem();
@@ -148,7 +129,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 		jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Patient Record"));
 
-		//jLabel1.setText("Full Name:");
+		jLabel1.setText("Full Name:");
 
 		txtPatientName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 		txtPatientName.setName("txtPatientName"); // NOI18N
@@ -161,14 +142,12 @@ public class HSInputWindow extends javax.swing.JFrame {
 		txtPatientHeight1.setName("txtPatientHeight"); // NOI18N
 		txtPatientHeight1.addFocusListener(new java.awt.event.FocusAdapter() {
 			public void focusLost(java.awt.event.FocusEvent evt) {
-				txtPatientHeight1_FocusLost(evt);
+				//txtPatientHeight1_FocusLost(evt);
 			}
 		});
-		txtPatientHeight1.addKeyListener(new java.awt.event.KeyAdapter() {
-			public void keyReleased(java.awt.event.KeyEvent evt) {
-				txtPatientHeight_TextChange(evt);
-			}
-		});
+		
+				//txtPatientHeight_TextChange(evt);
+	
 
 		jLabel3.setText("Weight:");
 
@@ -191,12 +170,12 @@ public class HSInputWindow extends javax.swing.JFrame {
 		txtPatientHeight2.setName("txtPatientHeight2"); // NOI18N
 		txtPatientHeight2.addFocusListener(new java.awt.event.FocusAdapter() {
 			public void focusLost(java.awt.event.FocusEvent evt) {
-				txtPatientHeight2_FocusLost(evt);
+				//txtPatientHeight2_FocusLost(evt);
 			}
 		});
 		txtPatientHeight2.addKeyListener(new java.awt.event.KeyAdapter() {
 			public void keyReleased(java.awt.event.KeyEvent evt) {
-				txtPatientHeight2_TextChange(evt);
+			//	txtPatientHeight2_TextChange(evt);
 			}
 		});
 
@@ -205,11 +184,11 @@ public class HSInputWindow extends javax.swing.JFrame {
 		jLabel4.setText("Record Date");
 
 		btnGenerateReport.setText("Generate Report");
-		btnGenerateReport.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnGenerateReportActionPerformed(evt);
-			}
-		});
+//		btnGenerateReport.addActionListener(new java.awt.event.ActionListener() {
+//			public void actionPerformed(java.awt.event.ActionEvent evt) {
+//				btnGenerateReportActionPerformed(evt);
+//			}
+//		});
 
 		jLabel5.setText("Cholesterol:");
 
@@ -375,7 +354,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 		btnCalculateBMI.setText("Calculate BMI");
 		btnCalculateBMI.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnCalculateBMIActionPerformed(evt);
+				//btnCalculateBMIActionPerformed(evt);
 			}
 		});
 		jMenu1.add(btnCalculateBMI);
@@ -442,32 +421,32 @@ public class HSInputWindow extends javax.swing.JFrame {
 	}// GEN-LAST:event_txtPatientWeight_TextChange
 
 	
-	private void txtPatientHeight_TextChange(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtPatientHeight_TextChange
-		checkHeights(CHECK_FEET);
-	}// GEN-LAST:event_txtPatientHeight_TextChange
-
-	private void txtPatientHeight2_TextChange(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtPatientHeight2_TextChange
-		checkHeights(CHECK_INCHES);
-	}// GEN-LAST:event_txtPatientHeight2_TextChange
-
-	private void btnCalculateBMIActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCalculateBMIActionPerformed
-		if (checkHeights((byte) (CHECK_FEET | CHECK_INCHES)) & checkWeight()) {
-			String height1 = txtPatientHeight1.getText();
-			String height2 = txtPatientHeight2.getText();
-			String weight = txtPatientWeight.getText();
-			double BMI = Conversion.CalculateBodyMassIndex(height1, height2, weight);
-
-			if (BMI > 0.0) {
-				DecimalFormat df = new DecimalFormat("#.##");
-				df.setRoundingMode(RoundingMode.HALF_UP);
-				txtBMI.setText(df.format(BMI));
-				txtBMI.setBackground(Color.WHITE);
-			} else {
-				txtBMI.setBackground(Color.PINK);
-			}
-			indicateBMIRisk();
-		}
-	}// GEN-LAST:event_btnCalculateBMIActionPerformed
+//	private void txtPatientHeight_TextChange(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtPatientHeight_TextChange
+//		checkHeights(CHECK_FEET);
+//	}// GEN-LAST:event_txtPatientHeight_TextChange
+//
+//	private void txtPatientHeight2_TextChange(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtPatientHeight2_TextChange
+//		checkHeights(CHECK_INCHES);
+//	}// GEN-LAST:event_txtPatientHeight2_TextChange
+//
+//	private void btnCalculateBMIActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCalculateBMIActionPerformed
+//		if (checkHeights((byte) (CHECK_FEET | CHECK_INCHES)) & checkWeight()) {
+//			String height1 = txtPatientHeight1.getText();
+//			String height2 = txtPatientHeight2.getText();
+//			String weight = txtPatientWeight.getText();
+//			double BMI = Conversion.CalculateBodyMassIndex(height1, height2, weight);
+//
+//			if (BMI > 0.0) {
+//				DecimalFormat df = new DecimalFormat("#.##");
+//				df.setRoundingMode(RoundingMode.HALF_UP);
+//				txtBMI.setText(df.format(BMI));
+//				txtBMI.setBackground(Color.WHITE);
+//			} else {
+//				txtBMI.setBackground(Color.PINK);
+//			}
+//			//indicateBMIRisk();
+//		}
+//	}// GEN-LAST:event_btnCalculateBMIActionPerformed
 	
 	
 	private void btnSearchByDate(java.awt.event.ActionEvent evt){
@@ -724,38 +703,32 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 	}
 
-	private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnGenerateReportActionPerformed
-		if (checkAllFields()) {
-			String[] patientInfo = { txtPatientName.getText(), txtDate.getDate().toString(), txtAge.getText(),
-					txtPatientHeight1.getText(), txtPatientHeight2.getText(), txtPatientWeight.getText(),
-					txtCholesterol.getText(), txtBMI.getText(), txtBloodPressure.getText() };
-			String date = "1";
-			String line = "";
-
-			DataBase insert = new DataBase(patientInfo);
-
-			insert.insertRecord();
-
-		}
-	}
+//	private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnGenerateReportActionPerformed
+//		if (checkAllFields()) {
+//			String[] patientInfo = { txtPatientName.getText(), txtDate.getDate().toString(), txtAge.getText(),
+//					txtPatientHeight1.getText(), txtPatientHeight2.getText(), txtPatientWeight.getText(),
+//					txtCholesterol.getText(), txtBMI.getText(), txtBloodPressure.getText() };
+//			String date = "1";
+//			String line = "";
+//
+//			DataBase insert = new DataBase(patientInfo);
+//
+//			insert.insertRecord();
+//
+//		}
+//	}
 	// GEN-LAST:event_btnGenerateReportActionPerformed
 
-	private void txtPatientHeight1_FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtPatientHeight1_FocusLost
-		checkHeights(CHECK_FEET);
-	}// GEN-LAST:event_txtPatientHeight1_FocusLost
-
-	private void txtPatientHeight2_FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_txtPatientHeight2_FocusLost
-		checkHeights(CHECK_INCHES);
-	}// GEN-LAST:event_txtPatientHeight2_FocusLost
-
+	
 	private void txtAge_TextChange(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtAge_TextChange
 		checkAge();
+		
 	}// GEN-LAST:event_txtAge_TextChange
 
-	private boolean checkAllFields() {
-		return checkHeights((byte) (CHECK_FEET | CHECK_INCHES)) & checkWeight() & checkBloodPressure() & checkAge()
-				& checkCholesterol();
-	}
+//	private boolean checkAllFields() {
+//		return checkHeights((byte) (CHECK_FEET | CHECK_INCHES)) & checkWeight() & checkBloodPressure() & checkAge()
+//				& checkCholesterol();
+//	}
 
 	private boolean checkAge() {
 		String value = txtAge.getText();
@@ -793,41 +766,9 @@ public class HSInputWindow extends javax.swing.JFrame {
 		return result;
 	}
 
-	private boolean checkHeights(final byte boxes) {
-		String value1 = txtPatientHeight1.getText();
-		String value2 = txtPatientHeight2.getText();
-		boolean result = true;
+	
 
-		if ((boxes & CHECK_FEET) == CHECK_FEET) {
-			if (!Conversion.IsValidInteger(value1, 0, 10)) {
-				txtPatientHeight1.setBackground(Color.PINK);
-				result = false;
-			} else {
-				txtPatientHeight1.setBackground(Color.WHITE);
-			}
-		}
-
-		if ((boxes & CHECK_INCHES) == CHECK_INCHES) {
-			if (!Conversion.IsValidInteger(value2, 0, 11)) {
-				txtPatientHeight2.setBackground(Color.PINK);
-				result = false;
-			} else {
-				txtPatientHeight2.setBackground(Color.WHITE);
-			}
-		}
-		return result;
-	}
-
-	private boolean checkBloodPressure() {
-		boolean result = true;
-		if (!txtBloodPressure.getText().matches("[0-9]+/[0-9]+")) {
-			txtBloodPressure.setBackground(Color.PINK);
-			result = false;
-		} else {
-			txtBloodPressure.setBackground(Color.WHITE);
-		}
-		return result;
-	}
+	
 
 	/**
 	 * @param args
@@ -904,26 +845,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 	private JTextField txtBMIIndicator;
 	private JTextField txtBloodPressureIndicator;
 
-	private void indicateBMIRisk() {
-		String Indicator = "";
-		if (txtBMI.getText().isEmpty()) {
-			Indicator = "";
-		} else {
-			double value = Double.parseDouble(txtBMI.getText());
-			if (value < 18.5) {
-				Indicator = "UNDERWEIGHT";
-			} else if (value >= 18.5 & value <= 24.9) {
-				Indicator = "NORMAL";
-			} else if (value >= 25.0 & value <= 29.9) {
-				Indicator = "OVERWEIGHT";
-			} else {
-				Indicator = "OBESE";
-			}
-			;
-		}
-		;
-		txtBMIIndicator.setText(Indicator);
-	}
+
 
 	private void indicateCholesterolRisk() {
 		String Indicator = "";
@@ -945,6 +867,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 	}
 	
 	public String getCholesterolText(){
+		
 		return txtCholesterol.getText();
 	}
 	
@@ -960,6 +883,23 @@ public class HSInputWindow extends javax.swing.JFrame {
 		return txtBloodPressure.getText();
 	}
 	
+	public String getBmiText(){
+		return txtBMI.getText();
+	}
+	
+	public void setBmiIndicator(String indicator){
+		txtBMIIndicator.setText(indicator);
+	}
+	
+	public String getPatientHeightInFeetText(){
+		return txtPatientHeight1.getText();
+	}
+	
+	public String getPatientHeightInInchesText(){
+		
+		return txtPatientHeight2.getText();
+	}
+	
 	public void setNameField(String name){
 		jLabel1.setText(name);
 	}
@@ -967,6 +907,22 @@ public class HSInputWindow extends javax.swing.JFrame {
 	public void addBloodPressureKeyListener(KeyListener k){
 		txtBloodPressure.addKeyListener(k);
 		
+	}
+	
+	public void setBloodPressureBackground(Color color){
+		txtBloodPressure.setBackground(color);
+	}
+	
+	public void setFeetBackground(Color color){
+		txtPatientHeight1.setBackground(color);
+	}
+	
+	public void setInchesBackground(Color color){
+		txtPatientHeight2.setBackground(color);
+	}
+	
+	public void addBloodPressureFocusListener(FocusListener f){
+		txtBloodPressure.addFocusListener(f);
 	}
 
 	public void addCholesteroldFieldFocusListener(FocusListener f){
@@ -977,8 +933,20 @@ public class HSInputWindow extends javax.swing.JFrame {
 		txtCholesterol.addKeyListener(k);
 	}
 	
-	public void setBloodPressureBackground(Color color){
-		txtBloodPressure.setBackground(color);
+	public void addBmiKeyListener(KeyListener k){
+		txtBMI.addKeyListener(k);
+	}
+
+	public void addBmiFocusListener(FocusListener f){
+		txtBMI.addFocusListener(f);
+	}
+	
+	public void addPatientHeightInFeetListener(KeyListener k){
+		txtPatientHeight1.addKeyListener(k);
+	}
+	
+	public void addPatientHeightInInchesListener(KeyListener k){
+		txtPatientHeight2.addKeyListener(k);
 	}
 	
 }

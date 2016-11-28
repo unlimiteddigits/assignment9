@@ -1,7 +1,7 @@
 package control;
 
+import Model.PatientRecord;
 import View.HSInputWindow;
-import bodyprogram.PatientRecord;
 
 public class TestDrive {
 

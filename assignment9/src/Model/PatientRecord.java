@@ -1,6 +1,8 @@
-package bodyprogram;
+package Model;
 
 import java.awt.Color;
+
+import bodyprogram.Conversion;
 
 /**
  *
@@ -18,6 +20,9 @@ public class PatientRecord {
     private String date;
     private String cholesterolRisk;
     private String bloodPressureIndicator;
+    private String bmiClassification;
+    private final byte CHECK_FEET = 0x20;
+	private final byte CHECK_INCHES = 0x08;
     public PatientRecord(final String name){
         this.name = name;
     }
@@ -29,6 +34,28 @@ public class PatientRecord {
     public void setAge(final String age){
         this.age = age;
     }
+    
+	public String indicateBMIRisk(String indicator) {
+		String Indicator = "";
+		if (indicator.isEmpty()) {
+			Indicator = "";
+		} else {
+			double value = Double.parseDouble(indicator);
+			if (value < 18.5) {
+				Indicator = "UNDERWEIGHT";
+			} else if (value >= 18.5 & value <= 24.9) {
+				Indicator = "NORMAL";
+			} else if (value >= 25.0 & value <= 29.9) {
+				Indicator = "OVERWEIGHT";
+			} else {
+				Indicator = "OBESE";
+			}
+			;
+		}
+		;
+		bmiClassification = Indicator;
+		return bmiClassification;
+	}
     
     public String indicateCholesterolRisk(String cholesterol) {
 		String Indicator = "";
@@ -60,6 +87,25 @@ public class PatientRecord {
 		return result;
     }
     
+   public boolean checkHeights(final byte boxes,String feetOrInches) {
+		
+		boolean result = true;
+
+		if ((boxes & CHECK_FEET) == CHECK_FEET) {
+			if (!Conversion.IsValidInteger(feetOrInches, 0, 10)) {
+				
+				result = false;
+			} 
+		}
+
+		if ((boxes & CHECK_INCHES) == CHECK_INCHES) {
+			if (!Conversion.IsValidInteger(feetOrInches, 0, 11)) {
+				
+				result = false;
+			}
+		}
+		return result;
+	}
     
    public String indicateBloodPressureRisk(String bloodPressure) {
 		String Indicator = "";
@@ -126,6 +172,14 @@ public class PatientRecord {
     	return name;
     }
     
+    public byte getFeetByte(){
+    	return CHECK_FEET;
+    }
+    
+    public byte getInchesByte(){
+    	return CHECK_INCHES;
+    }
+    
     public String generateHTML(){
         StringBuilder html = new StringBuilder();
         html.append("<html>\n");
@@ -136,4 +190,5 @@ public class PatientRecord {
         
         return html.toString();
     }
+    
 }

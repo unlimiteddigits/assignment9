@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -122,6 +123,10 @@ public String search(int choice,String searchTerm) throws JSONException{
         
         JSONObject jsonRootObject = new JSONObject(result);
         JSONArray jsonArray = jsonRootObject.optJSONArray("json");
+        
+
+     
+        
         
         for (int x = 0; x < jsonArray.length(); x++) {
             JSONObject jsonObject = jsonArray.getJSONObject(x);

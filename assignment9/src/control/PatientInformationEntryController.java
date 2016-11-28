@@ -10,7 +10,6 @@ import java.awt.event.KeyEvent;
 
 import Model.*;
 import View.*;
-import bodyprogram.PatientRecord;
 
 public class PatientInformationEntryController {
 
@@ -58,7 +57,50 @@ public class PatientInformationEntryController {
 			}
 		});
 		
+
+	view.addBloodPressureFocusListener(new FocusAdapter() {
+		@Override
+		public void focusLost(FocusEvent arg0) {
+			setBloodPressureIndicator(view.getBloodPressureText());
+		}
+	});
 		
+	
+	view.addBmiKeyListener(new KeyAdapter() {
+		@Override
+		public void keyPressed(KeyEvent e) {
+			if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+				setBmiClassification(view.getBmiText());
+			}
+			
+		}
+	});
+	
+	
+	view.addPatientHeightInFeetListener(new java.awt.event.KeyAdapter() {
+		public void keyReleased(java.awt.event.KeyEvent evt) {
+			if(!model.checkHeights(model.getFeetByte(),view.getPatientHeightInFeetText())){
+				setFeetBackground(Color.RED);
+			}
+			else{
+				setFeetBackground(Color.WHITE);
+			}
+		}
+	});
+	
+	
+	view.addPatientHeightInInchesListener(new java.awt.event.KeyAdapter() {
+		public void keyReleased(java.awt.event.KeyEvent evt) {
+			if(!model.checkHeights(model.getInchesByte(),view.getPatientHeightInInchesText())){
+				setInchesBackground(Color.RED);
+			}
+			else{
+				setInchesBackground(Color.WHITE);
+			}
+		}
+	});
+	
+	
 		
 	}	
 		
@@ -73,6 +115,10 @@ public class PatientInformationEntryController {
 		view.setBloodPressureIndicator(model.indicateBloodPressureRisk(indicator));
 	}
 	
+	public void setBmiClassification(String indicator){
+		view.setBmiIndicator(model.indicateBMIRisk(indicator));
+	}
+	
 	public void setPatientName(String name){
 		model.setName(name);
 	}
@@ -81,13 +127,21 @@ public class PatientInformationEntryController {
 		view.setNameField(model.getName());
 	}
 	
+	public void setFeetBackground(Color color){
+		view.setFeetBackground(color);
+	}
+	
+	public void setInchesBackground(Color color){
+		view.setInchesBackground(color);
+	}
+	
 	public void setViewBackground(Color color){
 	
 		view.setBloodPressureBackground(color);
 		
 	}
 	
-	
+
 	
 	
 	
