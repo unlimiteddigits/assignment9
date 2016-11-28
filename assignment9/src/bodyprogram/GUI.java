@@ -254,15 +254,18 @@ public class GUI extends javax.swing.JFrame {
 		lblLbs.setName("lblPatientHeightLeftUnit");
 
 		txtCholesterolIndicator = new JTextField();
-		txtCholesterolIndicator.setEditable(false);
+		txtCholesterolIndicator.setEnabled(false);
+		txtCholesterolIndicator.setDisabledTextColor(Color.BLACK);
 		txtCholesterolIndicator.setColumns(10);
 
 		txtBMIIndicator = new JTextField();
-		txtBMIIndicator.setEditable(false);
+		txtBMIIndicator.setEnabled(false);
+		txtBMIIndicator.setDisabledTextColor(Color.BLACK);
 		txtBMIIndicator.setColumns(10);
 
 		txtBloodPressureIndicator = new JTextField();
-		txtBloodPressureIndicator.setEditable(false);
+		txtBloodPressureIndicator.setEnabled(false);
+		txtBloodPressureIndicator.setDisabledTextColor(Color.BLACK);
 		txtBloodPressureIndicator.setColumns(10);
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
