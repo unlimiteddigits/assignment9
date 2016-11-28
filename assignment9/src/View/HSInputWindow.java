@@ -140,13 +140,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 				new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##"))));
 		txtPatientHeight1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 		txtPatientHeight1.setName("txtPatientHeight"); // NOI18N
-		txtPatientHeight1.addFocusListener(new java.awt.event.FocusAdapter() {
-			public void focusLost(java.awt.event.FocusEvent evt) {
-				//txtPatientHeight1_FocusLost(evt);
-			}
-		});
 		
-				//txtPatientHeight_TextChange(evt);
 	
 
 		jLabel3.setText("Weight:");
@@ -223,15 +217,18 @@ public class HSInputWindow extends javax.swing.JFrame {
 		lblLbs.setName("lblPatientHeightLeftUnit");
 
 		txtCholesterolIndicator = new JTextField();
-		txtCholesterolIndicator.setEditable(false);
+		txtCholesterolIndicator.setEnabled(false);
+		txtCholesterolIndicator.setDisabledTextColor(Color.BLACK);
 		txtCholesterolIndicator.setColumns(10);
 
 		txtBMIIndicator = new JTextField();
-		txtBMIIndicator.setEditable(false);
+		txtBMIIndicator.setEnabled(false);
+		txtBMIIndicator.setDisabledTextColor(Color.BLACK);
 		txtBMIIndicator.setColumns(10);
 
 		txtBloodPressureIndicator = new JTextField();
-		txtBloodPressureIndicator.setEditable(false);
+		txtBloodPressureIndicator.setEnabled(false);
+		txtBloodPressureIndicator.setDisabledTextColor(Color.BLACK);
 		txtBloodPressureIndicator.setColumns(10);
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

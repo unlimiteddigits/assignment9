@@ -76,6 +76,13 @@ public class PatientInformationEntryController {
 		}
 	});
 	
+	view.addBmiFocusListener(new FocusAdapter() {
+		@Override
+		public void focusLost(FocusEvent arg0) {
+			setBmiClassification(view.getBmiText());
+		}
+	});
+	
 	
 	view.addPatientHeightInFeetListener(new java.awt.event.KeyAdapter() {
 		public void keyReleased(java.awt.event.KeyEvent evt) {
