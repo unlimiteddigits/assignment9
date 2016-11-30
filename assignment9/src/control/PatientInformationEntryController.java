@@ -3,10 +3,16 @@ package control;
 
 
 import java.awt.Color;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.rmi.RemoteException;
+import java.text.DecimalFormat;
+
+import com.beetledev.www.BmiServiceSoapProxy;
+import com.beetledev.www.ConverterServiceSoapProxy;
 
 import Model.*;
 import View.*;
@@ -15,7 +21,7 @@ public class PatientInformationEntryController {
 
 	private final HSInputWindow view;
 	private final PatientRecord model;
-	
+	private final Indications indications = new Indications();
 	public PatientInformationEntryController(HSInputWindow view,PatientRecord model){
 		
 		this.view = view;
@@ -25,6 +31,7 @@ public class PatientInformationEntryController {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					setPatientCholesterolRisk();
 					setIndicator(view.getCholesterolText());
 				}
 				;
@@ -35,6 +42,7 @@ public class PatientInformationEntryController {
 		view.addCholesteroldFieldFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
+				setPatientCholesterolRisk();
 				setIndicator(view.getCholesterolText());
 			}
 		});
@@ -44,7 +52,7 @@ public class PatientInformationEntryController {
 			@Override
 			
 			public void keyPressed(KeyEvent e) {
-				if(!model.checkBloodPressure(view.getBloodPressureText())){
+				if(!indications.checkBloodPressure(view.getBloodPressureText())){
 					setViewBackground(Color.RED);
 					
 				}else{
@@ -83,10 +91,38 @@ public class PatientInformationEntryController {
 		}
 	});
 	
+view.addBmiMenuCalculationactionListener(new ActionListener(){
+	@Override
+	public void actionPerformed(java.awt.event.ActionEvent evt) {
+		BmiServiceSoapProxy newProxy = new BmiServiceSoapProxy();
+		
+		
+		
+		ConverterServiceSoapProxy newConverter = new ConverterServiceSoapProxy();
+		
+		try {
+			view.setBmiText(formatMyDouble(newProxy.getBmiValue(newConverter.lbs2Kg(Integer.parseInt(view.getWeightText())), newConverter.in2Cm(Integer.parseInt(view.getPatientHeightInFeetText()) * 12) + Integer.parseInt(view.getPatientHeightInInchesText()))) + "");
+			setBmiClassification(formatMyDouble(newProxy.getBmiValue(newConverter.lbs2Kg(Integer.parseInt(view.getWeightText())), newConverter.in2Cm(Integer.parseInt(view.getPatientHeightInFeetText()) * 12) + Integer.parseInt(view.getPatientHeightInInchesText()))) + "");
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			setBmiClassification(newProxy.getBmiDesc(newProxy.getBmiValue(newConverter.lbs2Kg(Integer.parseInt(view.getWeightText())), newConverter.in2Cm(Integer.parseInt(view.getPatientHeightInFeetText()) * 12) + Integer.parseInt(view.getPatientHeightInInchesText()))));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+});
+	
 	
 	view.addPatientHeightInFeetListener(new java.awt.event.KeyAdapter() {
 		public void keyReleased(java.awt.event.KeyEvent evt) {
-			if(!model.checkHeights(model.getFeetByte(),view.getPatientHeightInFeetText())){
+			if(!indications.checkHeights(indications.getFeetByte(),view.getPatientHeightInFeetText())){
 				setFeetBackground(Color.RED);
 			}
 			else{
@@ -98,7 +134,7 @@ public class PatientInformationEntryController {
 	
 	view.addPatientHeightInInchesListener(new java.awt.event.KeyAdapter() {
 		public void keyReleased(java.awt.event.KeyEvent evt) {
-			if(!model.checkHeights(model.getInchesByte(),view.getPatientHeightInInchesText())){
+			if(!indications.checkHeights(indications.getInchesByte(),view.getPatientHeightInInchesText())){
 				setInchesBackground(Color.RED);
 			}
 			else{
@@ -114,21 +150,35 @@ public class PatientInformationEntryController {
 		
 
 	
+	
 	public void setIndicator(String indicator){
-		view.setRiskIndicator(model.indicateCholesterolRisk(indicator));
+		view.setRiskIndicator(model.getCholesterolRisk());
 	}
 	
 	public void setBloodPressureIndicator(String indicator){
-		view.setBloodPressureIndicator(model.indicateBloodPressureRisk(indicator));
+		view.setBloodPressureIndicator(model.getBloodPressureRisk());
 	}
 	
 	public void setBmiClassification(String indicator){
-		view.setBmiIndicator(model.indicateBMIRisk(indicator));
+	view.setBmiIndicator(model.getBmiRisk());
 	}
 	
 	public void setPatientName(String name){
 		model.setName(name);
 	}
+	
+	public void setBmiRisk(){
+		model.setBMI(indications.indicateBMIRisk(view.getBmiText()));
+	}
+	
+	public void setPatientCholesterolRisk(){
+		model.setCholesterol(indications.indicateCholesterolRisk(view.getCholesterolText()));
+	}
+	
+	public void setBloodPressureRisk(){
+		model.setBloodPressure(indications.indicateBloodPressureRisk(view.getBloodPressureText()));
+	}
+	
 	
 	public void setNameField(){
 		view.setNameField(model.getName());
@@ -149,7 +199,14 @@ public class PatientInformationEntryController {
 	}
 	
 
-	
+	public static double formatMyDouble(double formatMe){
+		
+		DecimalFormat myFormat = new DecimalFormat("##.##");
+		
+		return Double.valueOf(myFormat.format(formatMe));
+		
+		
+	}
 	
 	
 }

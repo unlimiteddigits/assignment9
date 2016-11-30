@@ -884,6 +884,13 @@ public class HSInputWindow extends javax.swing.JFrame {
 		return txtBMI.getText();
 	}
 	
+	public void setBmiText(String bmiValue){
+		txtBMI.setText(bmiValue);
+	}
+	public String getWeightText(){
+		return txtPatientWeight.getText();
+	}
+	
 	public void setBmiIndicator(String indicator){
 		txtBMIIndicator.setText(indicator);
 	}
@@ -933,6 +940,10 @@ public class HSInputWindow extends javax.swing.JFrame {
 	public void addBmiKeyListener(KeyListener k){
 		txtBMI.addKeyListener(k);
 	}
+	
+	public void addBmiMenuCalculationactionListener(ActionListener a){
+		btnCalculateBMI.addActionListener(a);
+	}
 
 	public void addBmiFocusListener(FocusListener f){
 		txtBMI.addFocusListener(f);
@@ -945,5 +956,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 	public void addPatientHeightInInchesListener(KeyListener k){
 		txtPatientHeight2.addKeyListener(k);
 	}
+	
+	
 	
 }
