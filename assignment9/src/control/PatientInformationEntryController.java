@@ -144,10 +144,19 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 	});
 	
 	
+	view.addWeightListener(new KeyAdapter(){
 		
-	}	
+	public void keyReleased(KeyEvent e){
+		if(!indications.checkWeight(view.getWeightText())){
+			setWeightBackground(Color.RED);
+		}else{
+			setWeightBackground(Color.WHITE);
+		}
+	}
+	
+	});	
 		
-		
+	}
 
 	
 	
@@ -197,6 +206,10 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 	
 		view.setBloodPressureBackground(color);
 		
+	}
+	
+	public void setWeightBackground(Color color){
+		view.setWeightBackground(color);
 	}
 	
 

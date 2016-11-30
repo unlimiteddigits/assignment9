@@ -149,11 +149,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 				new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###"))));
 		txtPatientWeight.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 		txtPatientWeight.setName("txtPatientWeight"); // NOI18N
-		txtPatientWeight.addKeyListener(new java.awt.event.KeyAdapter() {
-			public void keyReleased(java.awt.event.KeyEvent evt) {
-				txtPatientWeight_TextChange(evt);
-			}
-		});
+	
 
 		lblPatientHeightUnit1.setText("feet");
 		lblPatientHeightUnit1.setName("lblPatientHeightLeftUnit"); // NOI18N
@@ -413,9 +409,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 
 
-	private void txtPatientWeight_TextChange(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtPatientWeight_TextChange
-		checkWeight();
-	}// GEN-LAST:event_txtPatientWeight_TextChange
+
 
 	
 //	private void txtPatientHeight_TextChange(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtPatientHeight_TextChange
@@ -751,17 +745,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 		return result;
 	}
 
-	private boolean checkWeight() {
-		String value = txtPatientWeight.getText();
-		boolean result = true;
-		if (!Conversion.IsValidInteger(value, 1, 500)) {
-			txtPatientWeight.setBackground(Color.PINK);
-			result = false;
-		} else {
-			txtPatientWeight.setBackground(Color.WHITE);
-		}
-		return result;
-	}
+	
 
 	
 
@@ -844,24 +828,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 
 
-	private void indicateCholesterolRisk() {
-		String Indicator = "";
-		if (txtCholesterol.getText().isEmpty()) {
-			Indicator = "";
-		} else {
-			double value = Conversion.SafeParseInteger(txtCholesterol.getText());
-			Indicator = "BORDERLINE HIGH";
-			if (value < 200) {
-				Indicator = "DESIRABLE";
-			}
-			if (value >= 240) {
-				Indicator = "HIGH";
-			}
-			;
-		}
-		;
-		txtCholesterolIndicator.setText(Indicator);
-	}
+	
 	
 	public String getCholesterolText(){
 		
@@ -955,8 +922,16 @@ public class HSInputWindow extends javax.swing.JFrame {
 	
 	public void addPatientHeightInInchesListener(KeyListener k){
 		txtPatientHeight2.addKeyListener(k);
+	
 	}
 	
+	public void addWeightListener(KeyListener k){
+		txtPatientWeight.addKeyListener(k);
+	}
+	
+	public void setWeightBackground(Color color){
+		txtPatientWeight.setBackground(color);
+	}
 	
 	
 }

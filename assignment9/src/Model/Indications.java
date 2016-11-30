@@ -1,5 +1,7 @@
 package Model;
 
+import java.awt.Color;
+
 import bodyprogram.Conversion;
 
 public class Indications {
@@ -33,6 +35,20 @@ public class Indications {
 		bmiClassification = Indicator;
 		return bmiClassification;
 	}
+	
+	
+	public boolean checkWeight(final String weight) {
+		
+		boolean result = true;
+		if (!Conversion.IsValidInteger(weight, 1, 500)) {
+		
+			result = false;
+		} else {
+		
+		}
+		return result;
+	}
+	
 	
 	
 	  public String indicateBloodPressureRisk(String bloodPressure) {
