@@ -121,11 +121,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 		setTitle("SE-A9 Team 4 - Body");
 		setName("mainGUI"); // NOI18N
 		setResizable(false);
-		addWindowListener(new java.awt.event.WindowAdapter() {
-			public void windowOpened(java.awt.event.WindowEvent evt) {
-				GUI_FormLoad(evt);
-			}
-		});
+	
 
 		jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Patient Record"));
 
@@ -158,27 +154,15 @@ public class HSInputWindow extends javax.swing.JFrame {
 				new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##"))));
 		txtPatientHeight2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 		txtPatientHeight2.setName("txtPatientHeight2"); // NOI18N
-		txtPatientHeight2.addFocusListener(new java.awt.event.FocusAdapter() {
-			public void focusLost(java.awt.event.FocusEvent evt) {
-				//txtPatientHeight2_FocusLost(evt);
-			}
-		});
-		txtPatientHeight2.addKeyListener(new java.awt.event.KeyAdapter() {
-			public void keyReleased(java.awt.event.KeyEvent evt) {
-			//	txtPatientHeight2_TextChange(evt);
-			}
-		});
+		
+	
 
 		lblPatientHeightUnit2.setText("inches");
 
 		jLabel4.setText("Record Date");
 
 		btnGenerateReport.setText("Generate Report");
-//		btnGenerateReport.addActionListener(new java.awt.event.ActionListener() {
-//			public void actionPerformed(java.awt.event.ActionEvent evt) {
-//				btnGenerateReportActionPerformed(evt);
-//			}
-//		});
+
 
 		jLabel5.setText("Cholesterol:");
 
@@ -345,11 +329,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 		jMenu1.setText("Tools");
 
 		btnCalculateBMI.setText("Calculate BMI");
-		btnCalculateBMI.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				//btnCalculateBMIActionPerformed(evt);
-			}
-		});
+	
 		jMenu1.add(btnCalculateBMI);
 
 		jMenu2.setText("Search");
@@ -381,6 +361,8 @@ public class HSInputWindow extends javax.swing.JFrame {
 		jMenuBar1.add(jMenu2);
 		setJMenuBar(jMenuBar1);
 
+		
+
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
 				layout.createSequentialGroup().addContainerGap(28, Short.MAX_VALUE)
@@ -405,39 +387,14 @@ public class HSInputWindow extends javax.swing.JFrame {
 			RecordWindow rw = new RecordWindow(RecordWindow.RECORD_OPEN, jf.getSelectedFile().getAbsolutePath());
 			rw.setVisible(true);
 		}
-	}// GEN-LAST:event_btnOpenFileActionPerformed
+	}
 
 
 
 
 
 	
-//	private void txtPatientHeight_TextChange(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtPatientHeight_TextChange
-//		checkHeights(CHECK_FEET);
-//	}// GEN-LAST:event_txtPatientHeight_TextChange
-//
-//	private void txtPatientHeight2_TextChange(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtPatientHeight2_TextChange
-//		checkHeights(CHECK_INCHES);
-//	}// GEN-LAST:event_txtPatientHeight2_TextChange
-//
-//	private void btnCalculateBMIActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCalculateBMIActionPerformed
-//		if (checkHeights((byte) (CHECK_FEET | CHECK_INCHES)) & checkWeight()) {
-//			String height1 = txtPatientHeight1.getText();
-//			String height2 = txtPatientHeight2.getText();
-//			String weight = txtPatientWeight.getText();
-//			double BMI = Conversion.CalculateBodyMassIndex(height1, height2, weight);
-//
-//			if (BMI > 0.0) {
-//				DecimalFormat df = new DecimalFormat("#.##");
-//				df.setRoundingMode(RoundingMode.HALF_UP);
-//				txtBMI.setText(df.format(BMI));
-//				txtBMI.setBackground(Color.WHITE);
-//			} else {
-//				txtBMI.setBackground(Color.PINK);
-//			}
-//			//indicateBMIRisk();
-//		}
-//	}// GEN-LAST:event_btnCalculateBMIActionPerformed
+
 	
 	
 	private void btnSearchByDate(java.awt.event.ActionEvent evt){
@@ -694,33 +651,27 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 	}
 
-//	private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnGenerateReportActionPerformed
-//		if (checkAllFields()) {
-//			String[] patientInfo = { txtPatientName.getText(), txtDate.getDate().toString(), txtAge.getText(),
-//					txtPatientHeight1.getText(), txtPatientHeight2.getText(), txtPatientWeight.getText(),
-//					txtCholesterol.getText(), txtBMI.getText(), txtBloodPressure.getText() };
-//			String date = "1";
-//			String line = "";
-//
-//			DataBase insert = new DataBase(patientInfo);
-//
-//			insert.insertRecord();
-//
-//		}
-//	}
-	// GEN-LAST:event_btnGenerateReportActionPerformed
+	private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnGenerateReportActionPerformed
+	
+			String[] patientInfo = { txtPatientName.getText(), txtDate.getDate().toString(), txtAge.getText(),
+					txtPatientHeight1.getText(), txtPatientHeight2.getText(), txtPatientWeight.getText(),
+					txtCholesterol.getText(), txtBMI.getText(), txtBloodPressure.getText() };
+			String date = "1";
+			String line = "";
+
+			DataBase insert = new DataBase(patientInfo);
+
+			insert.insertRecord();
+
+	}
+
 
 	
 	private void txtAge_TextChange(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtAge_TextChange
 		checkAge();
 		
-	}// GEN-LAST:event_txtAge_TextChange
-
-//	private boolean checkAllFields() {
-//		return checkHeights((byte) (CHECK_FEET | CHECK_INCHES)) & checkWeight() & checkBloodPressure() & checkAge()
-//				& checkCholesterol();
-//	}
-
+	}
+	
 	private boolean checkAge() {
 		String value = txtAge.getText();
 		boolean result = true;
@@ -733,17 +684,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 		return result;
 	}
 
-	private boolean checkCholesterol() {
-		String value = txtCholesterol.getText();
-		boolean result = true;
-		if (!Conversion.IsValidInteger(value)) {
-			txtCholesterol.setBackground(Color.PINK);
-			result = false;
-		} else {
-			txtCholesterol.setBackground(Color.WHITE);
-		}
-		return result;
-	}
+	
 
 	
 
@@ -751,45 +692,8 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 	
 
-	/**
-	 * @param args
-	 *            the command line arguments
-	 */
-	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		// <editor-fold defaultstate="collapsed" desc=" Look and feel setting
-		// code (optional) ">
-		/*
-		 * If Nimbus (introduced in Java SE 6) is not available, stay with the
-		 * default look and feel. For details see
-		 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.
-		 * html
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(HSInputWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(HSInputWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(HSInputWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(HSInputWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-		// </editor-fold>
-
-		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new HSInputWindow().setVisible(true);
-			}
-		});
-	}
+	
+	
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JMenuItem btnCalculateBMI;
@@ -929,9 +833,27 @@ public class HSInputWindow extends javax.swing.JFrame {
 		txtPatientWeight.addKeyListener(k);
 	}
 	
+	public void addAgeListener(KeyListener k){
+		txtAge.addKeyListener(k);
+	}
+	
+	public String getAgeText(){
+		return txtAge.getText();
+	}
+	
 	public void setWeightBackground(Color color){
 		txtPatientWeight.setBackground(color);
 	}
 	
+	public void addDatePickerFocusListener(FocusListener f){
+		txtDate.addFocusListener(f);
+	}
 	
+	public String getDateText(){
+		return txtDate.getDate().toString();
+	}
+	
+	public void addReportButtonActionListener(ActionListener a){
+		btnGenerateReport.addActionListener(a);
+	}
 }

@@ -22,6 +22,7 @@ public class PatientRecord {
     private String bloodPressureRisk;
     private String checkHeight;
     private String bmiRisk;
+  
     
     
  
@@ -39,6 +40,7 @@ public class PatientRecord {
         this.age = age;
     }
     
+
 
     
  
@@ -58,9 +60,12 @@ public class PatientRecord {
     	bloodPressureRisk = bpr;
     }
     
-    public void setHeight(final String feet, final String inches){
+    public void setHeightFeet(final String feet){
         this.heightFeet = feet;
-        this.heightInches = inches;
+    }
+    
+    public void setHeightInches(final String inches){
+    	this.heightInches = inches;
     }
     
     public void setWeight(final String weight){
@@ -86,10 +91,44 @@ public class PatientRecord {
     public void setDate(final String date){
         this.date = date;
     }
+    
+    public String getDate(){
+    	return date;
+    }
   
+    public String getAge(){
+    	return age;
+    }
+    
     public String getName(){
     	return name;
     }
+    
+    public String getHeightFeet(){
+    	return heightFeet;
+    }
+    
+    public String getHeightInches(){
+    	return heightInches;
+    }
+    
+    
+    public String getBloodPressure(){
+    	return bloodPressure;
+    }
+    
+    public String getCholesterol(){
+    	return cholesterol;
+    }
+    
+    public String getWeight(){
+    	return weight;
+    }
+    
+    public String getBmi(){
+    	return bmi;
+    }
+    
     
     public String getBloodPressureRisk(){
     	return bloodPressureRisk;

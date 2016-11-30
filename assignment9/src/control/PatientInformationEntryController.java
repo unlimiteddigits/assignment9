@@ -3,6 +3,7 @@ package control;
 
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -16,6 +17,7 @@ import com.beetledev.www.ConverterServiceSoapProxy;
 
 import Model.*;
 import View.*;
+import bodyprogram.DataBase;
 
 public class PatientInformationEntryController {
 
@@ -32,6 +34,7 @@ public class PatientInformationEntryController {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
 					setPatientCholesterolRisk();
+					setPatientCholesterol(view.getCholesterolText());
 					setIndicator(view.getCholesterolText());
 				}
 				;
@@ -43,6 +46,7 @@ public class PatientInformationEntryController {
 			@Override
 			public void focusLost(FocusEvent arg0) {
 				setPatientCholesterolRisk();
+				setPatientCholesterol(view.getCholesterolText());
 				setIndicator(view.getCholesterolText());
 			}
 		});
@@ -60,6 +64,7 @@ public class PatientInformationEntryController {
 				}
 				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
 					setBloodPressureRisk();
+					setBloodPressure(view.getBloodPressureText());
 					setBloodPressureIndicator(view.getBloodPressureText());
 				}
 				;
@@ -71,6 +76,7 @@ public class PatientInformationEntryController {
 		@Override
 		public void focusLost(FocusEvent arg0) {
 			setBloodPressureRisk();
+			setBloodPressure(view.getBloodPressureText());
 			setBloodPressureIndicator(view.getBloodPressureText());
 		}
 	});
@@ -81,6 +87,7 @@ public class PatientInformationEntryController {
 		public void keyPressed(KeyEvent e) {
 			if (e.getKeyChar() == KeyEvent.VK_ENTER) {
 				setBmiRisk();
+				setPatientBmi(view.getBmiText());
 				setBmiClassification();
 			}
 			
@@ -91,6 +98,7 @@ public class PatientInformationEntryController {
 		@Override
 		public void focusLost(FocusEvent arg0) {
 			setBmiRisk();
+			setPatientBmi(view.getBmiText());
 			setBmiClassification();
 		}
 	});
@@ -106,14 +114,14 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 		
 		try {
 			setBmiRisk();
+			setPatientBmi(view.getBmiText());
 			view.setBmiText(formatMyDouble(newProxy.getBmiValue(newConverter.lbs2Kg(Integer.parseInt(view.getWeightText())), newConverter.in2Cm(Integer.parseInt(view.getPatientHeightInFeetText()) * 12) + Integer.parseInt(view.getPatientHeightInInchesText()))) + "");
 			setBmiClassification();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		setBmiRisk();
-		setBmiClassification();
+
 	}
 	
 	
@@ -126,6 +134,7 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 				setFeetBackground(Color.RED);
 			}
 			else{
+				setPatientHeightFeet(view.getPatientHeightInFeetText());
 				setFeetBackground(Color.WHITE);
 			}
 		}
@@ -138,6 +147,7 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 				setInchesBackground(Color.RED);
 			}
 			else{
+				setPatientHeightInches(view.getPatientHeightInInchesText());
 				setInchesBackground(Color.WHITE);
 			}
 		}
@@ -148,13 +158,53 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 		
 	public void keyReleased(KeyEvent e){
 		if(!indications.checkWeight(view.getWeightText())){
+			
 			setWeightBackground(Color.RED);
 		}else{
+			setPatientWeight(view.getWeightText());
 			setWeightBackground(Color.WHITE);
 		}
 	}
 	
 	});	
+	
+	
+	view.addAgeListener(new KeyAdapter(){
+		
+		public void keyPressed(KeyEvent e){
+			setPatientAge(view.getAgeText());
+		}
+		
+		
+		
+	});
+	
+	
+	
+	view.addReportButtonActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			String[] patientInfo = { model.getName(), view.getDateText(), model.getAge(),
+					model.getHeightFeet(), model.getHeightInches(), model.getWeight(),
+					model.getCholesterol(), model.getBmi(), model.getBloodPressure() };
+			String date = "1"; 
+			String line = "";
+
+			DataBase insert = new DataBase(patientInfo);
+
+			insert.insertRecord();
+		}
+	});
+	
+	view.addDatePickerFocusListener(new FocusAdapter(){
+		
+		public void focusLost(FocusEvent arg0) {
+			setPatientDate(view.getDateText());
+		}
+		
+		
+		
+	});
+	
 		
 	}
 
@@ -181,6 +231,34 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 		model.setBmiRisk(indications.indicateBMIRisk(view.getBmiText()));
 	}
 	
+	public void setPatientAge(String currentAge){
+		model.setAge(currentAge);
+	}
+	
+	public void setPatientCholesterol(String currentCholesterol){
+		model.setCholesterol(currentCholesterol);
+	}
+	
+	public void setPatientBmi(String currentBmiText){
+		model.setBMI(currentBmiText);
+	}
+	
+	public void setPatientWeight(String currentWeight){
+		model.setWeight(currentWeight);
+	}
+	
+	public void setBloodPressure(String currentBloodPressure){
+		model.setBloodPressure(currentBloodPressure);
+	}
+	
+	public void setPatientHeightFeet(String currentFeet){
+		model.setHeightFeet(currentFeet);
+	}
+	
+	public void setPatientHeightInches(String currentInches){
+		model.setHeightInches(currentInches);
+	}
+	
 	public void setPatientCholesterolRisk(){
 		model.setCholesterolRisk(indications.indicateCholesterolRisk(view.getCholesterolText()));
 	}
@@ -192,6 +270,10 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 	
 	public void setNameField(){
 		view.setNameField(model.getName());
+	}
+	
+	public void setPatientDate(String currentDate){
+		model.setDate(currentDate);
 	}
 	
 	public void setFeetBackground(Color color){
