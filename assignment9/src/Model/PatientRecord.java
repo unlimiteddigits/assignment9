@@ -54,6 +54,10 @@ public class PatientRecord {
         this.bloodPressure = bp;
     }
     
+    public void setBloodPressureRisk(final String bpr){
+    	bloodPressureRisk = bpr;
+    }
+    
     public void setHeight(final String feet, final String inches){
         this.heightFeet = feet;
         this.heightInches = inches;
@@ -64,11 +68,19 @@ public class PatientRecord {
     }
     
     public void setCholesterol(final String cholesterol){
-        this.cholesterol = cholesterol;
+    	this.cholesterol = cholesterol;
+    }
+    
+    public void setCholesterolRisk(final String cholesterolRisk){
+        this.cholesterolRisk = cholesterolRisk;
     }
     
     public void setBMI(final String bmi){
         this.bmi = bmi;
+    }
+    
+    public void setBmiRisk(final String bmiRisk){
+    	this.bmiRisk = bmiRisk;
     }
     
     public void setDate(final String date){
@@ -88,7 +100,7 @@ public class PatientRecord {
     }
     
    public String getCholesterolRisk(){
-	   return cholesterol;
+	   return cholesterolRisk;
    }
     
     

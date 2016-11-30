@@ -59,6 +59,7 @@ public class PatientInformationEntryController {
 					setViewBackground(Color.WHITE);
 				}
 				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					setBloodPressureRisk();
 					setBloodPressureIndicator(view.getBloodPressureText());
 				}
 				;
@@ -69,6 +70,7 @@ public class PatientInformationEntryController {
 	view.addBloodPressureFocusListener(new FocusAdapter() {
 		@Override
 		public void focusLost(FocusEvent arg0) {
+			setBloodPressureRisk();
 			setBloodPressureIndicator(view.getBloodPressureText());
 		}
 	});
@@ -78,7 +80,8 @@ public class PatientInformationEntryController {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-				setBmiClassification(view.getBmiText());
+				setBmiRisk();
+				setBmiClassification();
 			}
 			
 		}
@@ -87,7 +90,8 @@ public class PatientInformationEntryController {
 	view.addBmiFocusListener(new FocusAdapter() {
 		@Override
 		public void focusLost(FocusEvent arg0) {
-			setBmiClassification(view.getBmiText());
+			setBmiRisk();
+			setBmiClassification();
 		}
 	});
 	
@@ -101,19 +105,15 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 		ConverterServiceSoapProxy newConverter = new ConverterServiceSoapProxy();
 		
 		try {
+			setBmiRisk();
 			view.setBmiText(formatMyDouble(newProxy.getBmiValue(newConverter.lbs2Kg(Integer.parseInt(view.getWeightText())), newConverter.in2Cm(Integer.parseInt(view.getPatientHeightInFeetText()) * 12) + Integer.parseInt(view.getPatientHeightInInchesText()))) + "");
-			setBmiClassification(formatMyDouble(newProxy.getBmiValue(newConverter.lbs2Kg(Integer.parseInt(view.getWeightText())), newConverter.in2Cm(Integer.parseInt(view.getPatientHeightInFeetText()) * 12) + Integer.parseInt(view.getPatientHeightInInchesText()))) + "");
+			setBmiClassification();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		try {
-			setBmiClassification(newProxy.getBmiDesc(newProxy.getBmiValue(newConverter.lbs2Kg(Integer.parseInt(view.getWeightText())), newConverter.in2Cm(Integer.parseInt(view.getPatientHeightInFeetText()) * 12) + Integer.parseInt(view.getPatientHeightInInchesText()))));
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		setBmiRisk();
+		setBmiClassification();
 	}
 	
 	
@@ -159,24 +159,25 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 		view.setBloodPressureIndicator(model.getBloodPressureRisk());
 	}
 	
-	public void setBmiClassification(String indicator){
+	public void setBmiClassification(){
 	view.setBmiIndicator(model.getBmiRisk());
 	}
 	
 	public void setPatientName(String name){
+		
 		model.setName(name);
 	}
 	
 	public void setBmiRisk(){
-		model.setBMI(indications.indicateBMIRisk(view.getBmiText()));
+		model.setBmiRisk(indications.indicateBMIRisk(view.getBmiText()));
 	}
 	
 	public void setPatientCholesterolRisk(){
-		model.setCholesterol(indications.indicateCholesterolRisk(view.getCholesterolText()));
+		model.setCholesterolRisk(indications.indicateCholesterolRisk(view.getCholesterolText()));
 	}
 	
 	public void setBloodPressureRisk(){
-		model.setBloodPressure(indications.indicateBloodPressureRisk(view.getBloodPressureText()));
+		model.setBloodPressureRisk(indications.indicateBloodPressureRisk(view.getBloodPressureText()));
 	}
 	
 	
