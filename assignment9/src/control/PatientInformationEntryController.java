@@ -445,7 +445,7 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 	}
 	
 
-	public static double formatMyDouble(double formatMe){
+	public  double formatMyDouble(double formatMe){
 		
 		DecimalFormat myFormat = new DecimalFormat("##.##");
 		
