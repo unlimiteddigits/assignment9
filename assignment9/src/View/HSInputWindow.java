@@ -336,23 +336,25 @@ public class HSInputWindow extends javax.swing.JFrame {
 		searchRecords.setText("Search by name");
 		searchByDate.setText("search by date");
 
-		searchRecords.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnSearchRecordActionPerformed(evt);
-			}
-		});
+//		searchRecords.addActionListener(new java.awt.event.ActionListener() {
+//			public void actionPerformed(java.awt.event.ActionEvent evt) {
+//				btnSearchRecordActionPerformed(evt);
+//			}
+//		});
 		
-		searchByDate.addActionListener(new java.awt.event.ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent evt) {
-				btnSearchByDate(evt);
-				
-			}
-			
-			
-			
-		});
+//TODO asdfas
+		
+//		searchByDate.addActionListener(new java.awt.event.ActionListener(){
+//
+//			@Override
+//			public void actionPerformed(ActionEvent evt) {
+//				btnSearchByDate(evt);
+//				
+//			}
+//			
+//			
+//			
+//		});
 
 		jMenu2.add(searchRecords);
 		jMenu2.add(searchByDate);
@@ -397,7 +399,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 	
 	
-	private void btnSearchByDate(java.awt.event.ActionEvent evt){
+	public void btnSearchByDate(java.awt.event.ActionEvent evt){
 		
 		javax.swing.JFrame searchDateFrame = new javax.swing.JFrame();
 
@@ -531,7 +533,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 		
 	}
 
-	private void btnSearchRecordActionPerformed(java.awt.event.ActionEvent evt) {
+	public void btnSearchRecordActionPerformed(java.awt.event.ActionEvent evt) {
 
 		javax.swing.JFrame searchFrame = new javax.swing.JFrame();
 
@@ -855,5 +857,13 @@ public class HSInputWindow extends javax.swing.JFrame {
 	
 	public void addReportButtonActionListener(ActionListener a){
 		btnGenerateReport.addActionListener(a);
+	}
+	
+	public void addSearchRecordsActionListener(ActionListener a){
+		searchRecords.addActionListener(a);
+	}
+	
+	public void addSearchByDateActionListener(ActionListener a){
+		searchByDate.addActionListener(a);
 	}
 }
