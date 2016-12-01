@@ -319,6 +319,16 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 	});	
 	
 	
+	view.addNameListener(new KeyAdapter(){
+		
+		
+		public void keyPressed(KeyEvent e){
+			setPatientName(view.getName());
+		}
+		
+	});
+	
+	
 	view.addAgeListener(new KeyAdapter(){
 		
 		public void keyPressed(KeyEvent e){

@@ -399,14 +399,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 	
 	
-	public void btnSearchByDate(java.awt.event.ActionEvent evt){
-		
-		
-		
-		
-		
-	}
-
+	
 	public void btnSearchRecordActionPerformed(java.awt.event.ActionEvent evt) {
 
 		javax.swing.JFrame searchFrame = new javax.swing.JFrame();
@@ -603,6 +596,10 @@ public class HSInputWindow extends javax.swing.JFrame {
 		return txtCholesterol.getText();
 	}
 	
+	public String getName(){
+		return txtPatientName.getText();
+	}
+	
 	public void setRiskIndicator(String indicator){
 		txtCholesterolIndicator.setText(indicator);
 	}
@@ -639,6 +636,8 @@ public class HSInputWindow extends javax.swing.JFrame {
 		return txtPatientHeight2.getText();
 	}
 	
+	
+	
 	public void setNameField(String name){
 		jLabel1.setText(name);
 	}
@@ -666,6 +665,10 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 	public void addCholesteroldFieldFocusListener(FocusListener f){
 		txtCholesterol.addFocusListener(f);
+	}
+	
+	public void addNameListener(KeyListener k){
+		txtPatientName.addKeyListener(k);
 	}
 	
 	public void addCholesterolFieldKeyListener(KeyListener k){
