@@ -520,7 +520,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 		searchDateFrame.add(NorthPanel, BorderLayout.NORTH);
 		searchDateFrame.add(records, BorderLayout.CENTER);
-		searchDateFrame.setTitle("Search Records by Name");
+		searchDateFrame.setTitle("Search Records by Date");
 
 		searchDateFrame.setVisible(true);
 	
@@ -647,7 +647,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 		searchFrame.add(NorthPanel, BorderLayout.NORTH);
 		searchFrame.add(records, BorderLayout.CENTER);
-		searchFrame.setTitle("Search Records by Date");
+		searchFrame.setTitle("Search Records by Name");
 
 		searchFrame.setVisible(true);
 
