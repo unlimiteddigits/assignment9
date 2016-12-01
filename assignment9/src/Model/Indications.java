@@ -1,7 +1,5 @@
 package Model;
 
-import java.awt.Color;
-
 import bodyprogram.Conversion;
 
 public class Indications {
