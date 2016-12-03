@@ -91,7 +91,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 		jMenuItem1.setText("jMenuItem1");
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("SE-A9 Team 4 - Body");
+		setTitle("Heath Screening Evaluation");
 		setName("mainGUI"); // NOI18N
 		setResizable(false);
 	
@@ -134,7 +134,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 		jLabel4.setText("Record Date");
 
-		btnGenerateReport.setText("Generate Report");
+		btnGenerateReport.setText("Save and Clear");
 
 
 		jLabel5.setText("Cholesterol:");
