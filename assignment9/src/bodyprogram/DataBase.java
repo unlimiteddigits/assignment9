@@ -45,8 +45,11 @@ public void insertRecord(){
         		URLEncoder.encode("weight","UTF-8")+"="+URLEncoder.encode(patientInfo[5],"UTF-8")+"&"+
         		URLEncoder.encode("cholesterol","UTF-8")+"="+URLEncoder.encode(patientInfo[6],"UTF-8")+"&"+
         		URLEncoder.encode("bmi","UTF-8")+"="+URLEncoder.encode(patientInfo[7],"UTF-8")+"&"+
-        		URLEncoder.encode("pressure","UTF-8")+"="+URLEncoder.encode(patientInfo[8],"UTF-8");
-//System.out.println(post_data);
+        		URLEncoder.encode("pressure","UTF-8")+"="+URLEncoder.encode(patientInfo[8],"UTF-8")+"&"+
+        		URLEncoder.encode("cholesterolIndicator","UTF-8")+"="+URLEncoder.encode(patientInfo[9],"UTF-8")+"&"+
+        		URLEncoder.encode("bmiIndicator","UTF-8")+"="+URLEncoder.encode(patientInfo[10],"UTF-8")+"&"+
+        		URLEncoder.encode("bloodPressureIndicator","UTF-8")+"="+URLEncoder.encode(patientInfo[11],"UTF-8");
+System.out.println(post_data);
         bufferedWriter.write(post_data);
         bufferedWriter.flush();
         bufferedWriter.close();
@@ -98,7 +101,7 @@ public String search(int choice,String searchTerm) throws JSONException{
                     + URLEncoder.encode("searchTerm","UTF-8")+"="+URLEncoder.encode(searchTerm,"UTF-8");
 
         }
-        
+       
 
 
         bufferedWriter.write(post_data);
@@ -161,15 +164,87 @@ public String search(int choice,String searchTerm) throws JSONException{
 	
 }
 
-public String[] getPatientInfo(){
-	String[] copy = new String[patientInfo.length];
-	 System.arraycopy(patientInfo, 0, copy, 0, patientInfo.length);
-	 return copy;
-	 
-}
+public String getDateTotals(String date) throws JSONException{
+	
+	String printme = "";
+	
+	try{
+        URL url = new URL("http://www.sullens.net/~sice/PHP5/dateTotals.php");
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+        httpURLConnection.setRequestMethod("POST");
+        httpURLConnection.setDoOutput(true);
+        httpURLConnection.setDoInput(true);
+        OutputStream outputStream = httpURLConnection.getOutputStream();
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+        String post_data = "";
+        
+       
+         post_data =    URLEncoder.encode("searchBy","UTF-8")+"="+URLEncoder.encode("date","UTF-8")+"&"
+        + URLEncoder.encode("date","UTF-8")+"="+URLEncoder.encode(date,"UTF-8");
+         
+  
+        
+        
+        
 
-public void setPatientInfo(String[] patientInfo){
-	this.patientInfo = patientInfo;
+
+        bufferedWriter.write(post_data);
+        bufferedWriter.flush();
+        bufferedWriter.close();
+        outputStream.close();
+  
+        httpURLConnection.disconnect();
+
+      InputStream inputStream = httpURLConnection.getInputStream();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+        
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) !=null){
+        	result += line + "\n" ;
+        	
+        }
+      
+      
+        
+        JSONObject jsonRootObject = new JSONObject(result);
+        JSONArray jsonArray = jsonRootObject.optJSONArray("json");
+        
+
+     
+        
+        
+        for (int x = 0; x < jsonArray.length(); x++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(x);
+             printme += "Health Screening Results" + "\n"
+            		 +	"Date: " + jsonObject.optString("date") + "\n"
+            		 + 	"Number of individuals Screened: " + jsonObject.optString("total")
+             		 +  "Total Cholesterol" + "\n\n" 
+            		 +  "DESIRABLE \t\t" + jsonObject.optString("desireableCount") + "\n"
+            		 +	"BORDERLINE \t\t" + jsonObject.optString("borderlineCount") + "\n"
+            		 + 	"HIGH \t\t" + jsonObject.optString("highCount");
+            	
+
+
+       
+        }
+     
+        bufferedReader.close();
+        inputStream.close();
+
+    }catch(MalformedURLException e){
+        e.printStackTrace();
+    } catch(IOException e){
+        e.printStackTrace();
+    }	
+	if(printme.equals("")){
+		return "no records found";
+	}
+	
+	
+	return printme;
+	
 }
 
 

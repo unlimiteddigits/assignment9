@@ -2,6 +2,7 @@ package AppDriver;
 
 import Model.PatientRecord;
 import View.HSInputWindow;
+import View.dateTotals;
 import control.PatientInformationEntryController;
 
 public class PatientHealthScreening {
@@ -21,6 +22,10 @@ public class PatientHealthScreening {
 				} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		dateTotals newDateTotals = new dateTotals();
+		
+		
 		
 
 	}

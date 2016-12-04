@@ -345,7 +345,8 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
 			String[] patientInfo = { model.getName(), view.getDateText(), model.getAge(),
 					model.getHeightFeet(), model.getHeightInches(), model.getWeight(),
-					model.getCholesterol(), model.getBmi(), model.getBloodPressure() };
+					model.getCholesterol(), model.getBmi(), model.getBloodPressure(),model.getCholesterolRisk()
+					,model.getBmiRisk(),model.getBloodPressureRisk()};
 			String date = "1"; 
 			String line = "";
 
