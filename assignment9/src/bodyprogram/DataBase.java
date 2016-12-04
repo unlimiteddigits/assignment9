@@ -220,9 +220,9 @@ public String getDateTotals(String date) throws JSONException{
              printme += "Health Screening Results" + "\n"
             		 +	"Date: " + jsonObject.optString("date") + "\n"
             		 + 	"Number of individuals Screened: " + jsonObject.optString("total")
-             		 +  "Total Cholesterol" + "\n\n" 
+             		 +  "\nTotal Cholesterol" + "\n\n" 
             		 +  "DESIRABLE \t\t" + jsonObject.optString("desireableCount") + "\n"
-            		 +	"BORDERLINE \t\t" + jsonObject.optString("borderlineCount") + "\n"
+            		 +	"BORDERLINE \t\t" + jsonObject.optString("borderLineCount") + "\n"
             		 + 	"HIGH \t\t" + jsonObject.optString("highCount");
             	
 
