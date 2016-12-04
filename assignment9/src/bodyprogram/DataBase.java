@@ -217,6 +217,9 @@ public String getDateTotals(String date) throws JSONException{
         
         for (int x = 0; x < jsonArray.length(); x++) {
             JSONObject jsonObject = jsonArray.getJSONObject(x);
+            if(jsonObject.optString("total").equals("0")){
+            	printme = "";
+            }else{
              printme += "Health Screening Results" + "\n"
             		 +	"Date: " + jsonObject.optString("date") + "\n"
             		 + 	"Number of individuals Screened: " + jsonObject.optString("total")
@@ -237,7 +240,7 @@ public String getDateTotals(String date) throws JSONException{
             		 +	"HYPERTENSIVE CRISIS \t" + jsonObject.optString("hyper");
             	
 
-
+            }
        
         }
      
