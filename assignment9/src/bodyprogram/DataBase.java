@@ -230,6 +230,8 @@ public String getDateTotals(String date) throws JSONException{
        
         }
      
+        
+        
         bufferedReader.close();
         inputStream.close();
 

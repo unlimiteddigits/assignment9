@@ -570,7 +570,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 	}
 	
 	public String getName(){
-		return txtPatientName.getText();
+		return txtPatientName.getText().toString();
 	}
 	
 	public void setRiskIndicator(String indicator){
