@@ -220,10 +220,21 @@ public String getDateTotals(String date) throws JSONException{
              printme += "Health Screening Results" + "\n"
             		 +	"Date: " + jsonObject.optString("date") + "\n"
             		 + 	"Number of individuals Screened: " + jsonObject.optString("total")
-             		 +  "\nTotal Cholesterol" + "\n\n" 
+             		 +  "\n\nTotal Cholesterol" + "\n\n" 
             		 +  "DESIRABLE \t\t" + jsonObject.optString("desireableCount") + "\n"
             		 +	"BORDERLINE \t\t" + jsonObject.optString("borderLineCount") + "\n"
-            		 + 	"HIGH \t\t" + jsonObject.optString("highCount");
+            		 + 	"HIGH \t\t" + jsonObject.optString("highCount") + "\n\n"
+            		 +	"Body Mass Index" + "\n\n"
+            		 + 	"UNDERWEIGHT \t" + jsonObject.optString("underweight") + "\n"
+            		 +	"NORMAL \t\t" + jsonObject.optString("normalbmi") + "\n"
+            		 + 	"OVERWEIGHT \t\t" + jsonObject.optString("overweight") + "\n"
+            		 +  "OBESE \t\t" + jsonObject.optString("obese")
+            		 + 	"\n\n Blood Pressure \n\n"
+            		 + 	"NORMAL\t\t" + jsonObject.optString("normalblood") + "\n"
+            		 +  "PREHYPERTENSION \t" + jsonObject.optString("prehype") + "\n"
+            		 +	"STAGE 1 HYPERTENSION \t" + jsonObject.optString("stage1") + "\n"
+            		 +  "STAGE 2 HYPERTENSION \t" + jsonObject.optString("stage2") + "\n"
+            		 +	"HYPERTENSIVE CRISIS \t" + jsonObject.optString("hyper");
             	
 
 

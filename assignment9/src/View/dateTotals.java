@@ -139,7 +139,7 @@ public dateTotals(){
 
 		searchDateFrame.add(NorthPanel, BorderLayout.NORTH);
 		searchDateFrame.add(records, BorderLayout.CENTER);
-		searchDateFrame.setTitle("Search Records by Date");
+		searchDateFrame.setTitle("Total count by Date");
 
 		searchDateFrame.setVisible(true);
 	
