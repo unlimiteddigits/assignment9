@@ -2,7 +2,7 @@ package AppDriver;
 
 import Model.PatientRecord;
 import View.HSInputWindow;
-import View.dateTotals;
+import View.DateTotals;
 import control.PatientInformationEntryController;
 
 public class PatientHealthScreening {
@@ -23,7 +23,7 @@ public class PatientHealthScreening {
 			e.printStackTrace();
 		}
 		
-		dateTotals newDateTotals = new dateTotals();
+//		dateTotals newDateTotals = new dateTotals();
 		
 		
 		

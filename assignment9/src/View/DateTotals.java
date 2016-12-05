@@ -16,10 +16,10 @@ import org.json.JSONException;
 
 import bodyprogram.DataBase;
 
-public class dateTotals extends JFrame {
+public class DateTotals extends JFrame {
 	
 	
-public dateTotals(){
+public DateTotals(){
 		javax.swing.JFrame searchDateFrame = new javax.swing.JFrame();
 
 		searchDateFrame.setSize(new Dimension(500, 500));
