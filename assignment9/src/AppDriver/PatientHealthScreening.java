@@ -19,7 +19,7 @@ public class PatientHealthScreening {
 		
 			thisView.setVisible(true);
 			
-			DateTotals newDateTotals = new DateTotals();
+		
 			
 			
 				
