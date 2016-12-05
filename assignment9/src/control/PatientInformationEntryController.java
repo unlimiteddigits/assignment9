@@ -32,6 +32,7 @@ public class PatientInformationEntryController {
 	private final HSInputWindow view;
 	private final PatientRecord model;
 	private final Indications indications = new Indications();
+	private final DateTotals dateInformation = new DateTotals();
 	public PatientInformationEntryController(HSInputWindow view,PatientRecord model){
 		
 		this.view = view;
@@ -42,15 +43,24 @@ public class PatientInformationEntryController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				DateTotals individual = new DateTotals();
+		
 				
-				individual.searchRecordsByDate();				
+				dateInformation.searchRecordsByDate();				
 				
 				
 			}
 		});
 		
-//		view.
+		view.addSearchTotalsByDate(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				dateInformation.searchTotalsByDate();				
+				
+			}
+			});
 		
 		view.addCholesterolFieldKeyListener(new KeyAdapter() {
 			@Override
