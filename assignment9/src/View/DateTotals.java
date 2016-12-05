@@ -40,6 +40,8 @@ public DateTotals(){
 		javax.swing.JButton btnSearch = new javax.swing.JButton();
 
 		GridBagConstraints gbc = new GridBagConstraints();
+		GridBagConstraints gbc2 = new GridBagConstraints();
+		GridBagConstraints gbc3 = new GridBagConstraints();
 
 		gbc.gridx = GridBagConstraints.RELATIVE;
 
@@ -51,23 +53,23 @@ public DateTotals(){
 
 		NorthPanel.add(newLabel, gbc);
 
-		gbc.fill = GridBagConstraints.BOTH;
+		gbc2.fill = GridBagConstraints.BOTH;
 
-		gbc.gridx = GridBagConstraints.RELATIVE;
-		gbc.gridy = 0;
-		gbc.insets = new Insets(1, 1, 1, 20);
-		gbc.weightx = 1;
-		gbc.weighty = .7;
+		gbc2.gridx = GridBagConstraints.RELATIVE;
+		gbc2.gridy = 0;
+		gbc2.insets = new Insets(1, 1, 1, 20);
+		gbc2.weightx = 1;
+		gbc2.weighty = .7;
 
-		NorthPanel.add(datePicker, gbc);
+		NorthPanel.add(datePicker, gbc2);
 
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.gridx = GridBagConstraints.RELATIVE;
-		gbc.gridy = 0;
-		gbc.weightx = .2;
-		gbc.weighty = 1;
+		gbc3.fill = GridBagConstraints.HORIZONTAL;
+		gbc3.gridx = GridBagConstraints.RELATIVE;
+		gbc3.gridy = 0;
+		gbc3.weightx = .2;
+		gbc3.weighty = 1;
 
-		NorthPanel.add(btnSearch, gbc);
+		NorthPanel.add(btnSearch, gbc3);
 
 		btnSearch.setText("totals by date");
 
