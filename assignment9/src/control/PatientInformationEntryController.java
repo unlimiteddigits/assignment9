@@ -37,13 +37,6 @@ public class PatientInformationEntryController {
 		this.view = view;
 		this.model = model;
 		
-		view.addSearchRecordsActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				view.btnSearchRecordActionPerformed(e);
-			}
-		});
-		
 		view.addSearchByDateActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {

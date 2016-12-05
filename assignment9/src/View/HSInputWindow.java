@@ -527,7 +527,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JMenuItem btnCalculateBMI;
-	private javax.swing.JMenuItem searchRecords;
+	private javax.swing.JMenuItem searchRecords;	//TODO delete this, I didn't want to touch
 	private javax.swing.JMenuItem searchByDate;
 	private javax.swing.JMenu btnFileMenu;
 	private javax.swing.JButton btnGenerateReport;
@@ -695,10 +695,6 @@ public class HSInputWindow extends javax.swing.JFrame {
 	
 	public void addReportButtonActionListener(ActionListener a){
 		btnGenerateReport.addActionListener(a);
-	}
-	
-	public void addSearchRecordsActionListener(ActionListener a){
-		searchRecords.addActionListener(a);
 	}
 	
 	public void addSearchByDateActionListener(ActionListener a){
