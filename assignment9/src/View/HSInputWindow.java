@@ -87,6 +87,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 		jMenu2 = new javax.swing.JMenu();
 		btnCalculateBMI = new javax.swing.JMenuItem();
 		searchByDate = new javax.swing.JMenuItem();
+		searchTotalsByDate = new javax.swing.JMenuItem();
 		jMenuItem1.setText("jMenuItem1");
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -307,11 +308,13 @@ public class HSInputWindow extends javax.swing.JFrame {
 		jMenu2.setText("Search");
 		
 		searchByDate.setText("search by date");
+		searchTotalsByDate.setText("Search totals by date");
 
 
 		
 		
 		jMenu2.add(searchByDate);
+		jMenu2.add(searchTotalsByDate);
 
 		jMenuBar1.add(jMenu1);
 		jMenuBar1.add(jMenu2);
@@ -509,6 +512,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JMenuItem btnCalculateBMI;
 	private javax.swing.JMenuItem searchByDate;
+	private javax.swing.JMenuItem searchTotalsByDate;
 	private javax.swing.JMenu btnFileMenu;
 	private javax.swing.JButton btnGenerateReport;
 	private javax.swing.JMenuItem btnOpenFile;
@@ -630,6 +634,10 @@ public class HSInputWindow extends javax.swing.JFrame {
 	
 	public void addBmiKeyListener(KeyListener k){
 		txtBMI.addKeyListener(k);
+	}
+	
+	public void addSearchTotalsByDate(ActionListener a){
+		searchTotalsByDate.addActionListener(a);
 	}
 	
 	public void addBmiMenuCalculationactionListener(ActionListener a){
