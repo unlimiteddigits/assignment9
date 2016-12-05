@@ -20,144 +20,141 @@ public class DateTotals extends JFrame {
 	
 	
 public DateTotals(){
-	
-	
-	
-	
-}
+		javax.swing.JFrame searchDateFrame = new javax.swing.JFrame();
 
+		searchDateFrame.setSize(new Dimension(500, 500));
 
-public void searchRecrodsByDateTotals(){
-	javax.swing.JFrame searchDateFrame = new javax.swing.JFrame();
+		searchDateFrame.setLocationRelativeTo(null);
+		searchDateFrame.setResizable(false);
 
-	searchDateFrame.setSize(new Dimension(500, 500));
+		javax.swing.JTextArea dbResults = new javax.swing.JTextArea(5, 30);
 
-	searchDateFrame.setLocationRelativeTo(null);
-	searchDateFrame.setResizable(false);
+		dbResults.setEditable(false);
 
-	javax.swing.JTextArea dbResults = new javax.swing.JTextArea(5, 30);
+		javax.swing.JPanel NorthPanel = new javax.swing.JPanel();
 
-	dbResults.setEditable(false);
+		NorthPanel.setLayout(new GridBagLayout());
 
-	javax.swing.JPanel NorthPanel = new javax.swing.JPanel();
+		javax.swing.JLabel newLabel = new javax.swing.JLabel();
+		org.jdesktop.swingx.JXDatePicker datePicker = new org.jdesktop.swingx.JXDatePicker();
+		javax.swing.JButton btnSearch = new javax.swing.JButton();
 
-	NorthPanel.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		GridBagConstraints gbc2 = new GridBagConstraints();
+		GridBagConstraints gbc3 = new GridBagConstraints();
 
-	javax.swing.JLabel newLabel = new javax.swing.JLabel();
-	org.jdesktop.swingx.JXDatePicker datePicker = new org.jdesktop.swingx.JXDatePicker();
-	javax.swing.JButton btnSearch = new javax.swing.JButton();
+		gbc.gridx = GridBagConstraints.RELATIVE;
 
-	GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridy = 0;
 
-	gbc.gridx = GridBagConstraints.RELATIVE;
+		gbc.weightx = .1;
 
-	gbc.gridy = 0;
+		gbc.weighty = 1;
 
-	gbc.weightx = .1;
+		NorthPanel.add(newLabel, gbc);
 
-	gbc.weighty = 1;
+		gbc2.fill = GridBagConstraints.BOTH;
 
-	NorthPanel.add(newLabel, gbc);
+		gbc2.gridx = GridBagConstraints.RELATIVE;
+		gbc2.gridy = 0;
+		gbc2.insets = new Insets(1, 1, 1, 20);
+		gbc2.weightx = 1;
+		gbc2.weighty = .7;
 
-	gbc.fill = GridBagConstraints.BOTH;
+		NorthPanel.add(datePicker, gbc2);
 
-	gbc.gridx = GridBagConstraints.RELATIVE;
-	gbc.gridy = 0;
-	gbc.insets = new Insets(1, 1, 1, 20);
-	gbc.weightx = 1;
-	gbc.weighty = .7;
+		gbc3.fill = GridBagConstraints.HORIZONTAL;
+		gbc3.gridx = GridBagConstraints.RELATIVE;
+		gbc3.gridy = 0;
+		gbc3.weightx = .2;
+		gbc3.weighty = 1;
 
-	NorthPanel.add(datePicker, gbc);
+		NorthPanel.add(btnSearch, gbc3);
 
-	gbc.fill = GridBagConstraints.HORIZONTAL;
-	gbc.gridx = GridBagConstraints.RELATIVE;
-	gbc.gridy = 0;
-	gbc.weightx = .2;
-	gbc.weighty = 1;
+		btnSearch.setText("totals by date");
 
-	NorthPanel.add(btnSearch, gbc);
+		datePicker.requestFocusInWindow();
+		newLabel.setText("Select Date: ");
 
-	btnSearch.setText("totals by date");
+		class MyAdapter implements ActionListener, KeyListener {
 
-	datePicker.requestFocusInWindow();
-	newLabel.setText("Select Date: ");
+			@Override
+			public void keyPressed(KeyEvent evt) {
 
-	class MyAdapter implements ActionListener, KeyListener {
+				DataBase search = new DataBase(null);
 
-		@Override
-		public void keyPressed(KeyEvent evt) {
+				try {
+					dbResults.setText(search.search(0, datePicker.getDate().toString()));
 
-			DataBase search = new DataBase(null);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
-			try {
-				dbResults.setText(search.search(0, datePicker.getDate().toString()));
+			}
 
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void actionPerformed(ActionEvent evt) {
+				DataBase search = new DataBase(null);
+
+				try {
+					dbResults.setText(search.getDateTotals(datePicker.getDate().toString()));
+
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 
 		}
 
-		@Override
-		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
+		MyAdapter adapter = new MyAdapter();
 
-		}
+		datePicker.addActionListener(adapter);
+		btnSearch.addActionListener(adapter);
 
-		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
+		searchDateFrame.getRootPane().setDefaultButton(btnSearch);
 
-		}
+		
+		
+		
+		
+		javax.swing.JScrollPane records = new javax.swing.JScrollPane(dbResults);
 
-		@Override
-		public void actionPerformed(ActionEvent evt) {
-			DataBase search = new DataBase(null);
+		
+	
+		
+		records.setSize(new Dimension(200, 200));
 
-			try {
-				dbResults.setText(search.getDateTotals(datePicker.getDate().toString()));
+		searchDateFrame.add(NorthPanel, BorderLayout.NORTH);
+		searchDateFrame.add(records, BorderLayout.CENTER);
+		searchDateFrame.setTitle("Total count by Date");
 
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-
-	}
-
-	MyAdapter adapter = new MyAdapter();
-
-	datePicker.addActionListener(adapter);
-	btnSearch.addActionListener(adapter);
-
-	searchDateFrame.getRootPane().setDefaultButton(btnSearch);
-
+		searchDateFrame.setVisible(true);
 	
 	
 	
 	
-	javax.swing.JScrollPane records = new javax.swing.JScrollPane(dbResults);
-
 	
-
 	
-	records.setSize(new Dimension(200, 200));
-
-	searchDateFrame.add(NorthPanel, BorderLayout.NORTH);
-	searchDateFrame.add(records, BorderLayout.CENTER);
-	searchDateFrame.setTitle("Total count by Date");
-
-	searchDateFrame.setVisible(true);
-
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
 }
 
 

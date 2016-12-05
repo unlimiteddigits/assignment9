@@ -32,7 +32,6 @@ public class PatientInformationEntryController {
 	private final HSInputWindow view;
 	private final PatientRecord model;
 	private final Indications indications = new Indications();
-	private final DateTotals dateInformation = new DateTotals();
 	public PatientInformationEntryController(HSInputWindow view,PatientRecord model){
 		
 		this.view = view;
@@ -43,9 +42,9 @@ public class PatientInformationEntryController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				DateTotals individual = new DateTotals();
 				
-				
-				dateInformation.searchRecordsByDate();				
+				individual.searchRecordsByDate();				
 				
 				
 			}
@@ -124,13 +123,6 @@ public class PatientInformationEntryController {
 			setBmiRisk();
 			setPatientBmi(view.getBmiText());
 			setBmiClassification();
-		}
-	});
-	
-	view.addSearchTotalsByDate(new ActionListener(){
-		@Override
-		public void actionPerformed(ActionEvent evt){
-			dateInformation.searchRecrodsByDateTotals();
 		}
 	});
 	
