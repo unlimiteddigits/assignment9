@@ -18,6 +18,10 @@ public class PatientHealthScreening {
 			PatientInformationEntryController controller = new PatientInformationEntryController(thisView,thisModel);
 		
 			thisView.setVisible(true);
+			
+			DateTotals newDateTotals = new DateTotals();
+			
+			
 				
 				} catch (Exception e) {
 			e.printStackTrace();

@@ -305,7 +305,12 @@ public class HSInputWindow extends javax.swing.JFrame {
 		jMenu1.add(btnCalculateBMI);
 
 		jMenu2.setText("Search");
+		
 		searchByDate.setText("search by date");
+
+
+		
+		
 		jMenu2.add(searchByDate);
 
 		jMenuBar1.add(jMenu1);
@@ -461,8 +466,8 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 		records.setSize(new Dimension(200, 200));
 
-		searchFrame.getContentPane().add(NorthPanel, BorderLayout.NORTH);
-		searchFrame.getContentPane().add(records, BorderLayout.CENTER);
+		searchFrame.add(NorthPanel, BorderLayout.NORTH);
+		searchFrame.add(records, BorderLayout.CENTER);
 		searchFrame.setTitle("Search Records by Name");
 
 		searchFrame.setVisible(true);
@@ -652,6 +657,14 @@ public class HSInputWindow extends javax.swing.JFrame {
 		txtAge.addKeyListener(k);
 	}
 	
+	public void addAgeFocusListener(FocusListener f){
+		txtAge.addFocusListener(f);
+	}
+	
+	public void addNameFocusListener(FocusListener f){
+		txtPatientName.addFocusListener(f);
+	}
+	
 	public String getAgeText(){
 		return txtAge.getText();
 	}
@@ -671,6 +684,8 @@ public class HSInputWindow extends javax.swing.JFrame {
 	public void addReportButtonActionListener(ActionListener a){
 		btnGenerateReport.addActionListener(a);
 	}
+	
+
 	
 	public void addSearchByDateActionListener(ActionListener a){
 		searchByDate.addActionListener(a);
