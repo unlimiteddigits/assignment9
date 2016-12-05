@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 
 import org.json.JSONException;
 
-import bodyprogram.DataBase;
+import Store.DataBase;
 
 public class DateTotals extends JFrame {
 	

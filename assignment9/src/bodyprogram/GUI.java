@@ -30,6 +30,10 @@ import java.text.ParseException;
 import javax.swing.JFileChooser;
 
 import org.json.JSONException;
+
+import Store.DataBase;
+import control.Conversion;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;

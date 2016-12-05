@@ -24,8 +24,8 @@ import com.beetledev.www.BmiServiceSoapProxy;
 import com.beetledev.www.ConverterServiceSoapProxy;
 
 import Model.*;
+import Store.DataBase;
 import View.*;
-import bodyprogram.DataBase;
 
 public class PatientInformationEntryController {
 

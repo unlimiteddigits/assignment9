@@ -15,9 +15,10 @@ import javax.swing.JFileChooser;
 
 import org.json.JSONException;
 
-import bodyprogram.Conversion;
-import bodyprogram.DataBase;
+import Store.DataBase;
 import bodyprogram.RecordWindow;
+import control.Conversion;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;

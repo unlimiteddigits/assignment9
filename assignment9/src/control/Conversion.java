@@ -1,4 +1,4 @@
-package bodyprogram;
+package control;
 
 import java.util.HashMap;
 
