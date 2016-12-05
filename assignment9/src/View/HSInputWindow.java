@@ -86,7 +86,6 @@ public class HSInputWindow extends javax.swing.JFrame {
 		jMenu1 = new javax.swing.JMenu();
 		jMenu2 = new javax.swing.JMenu();
 		btnCalculateBMI = new javax.swing.JMenuItem();
-		searchRecords = new javax.swing.JMenuItem();
 		searchByDate = new javax.swing.JMenuItem();
 		jMenuItem1.setText("jMenuItem1");
 
@@ -306,30 +305,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 		jMenu1.add(btnCalculateBMI);
 
 		jMenu2.setText("Search");
-		searchRecords.setText("Search by name");
 		searchByDate.setText("search by date");
-
-//		searchRecords.addActionListener(new java.awt.event.ActionListener() {
-//			public void actionPerformed(java.awt.event.ActionEvent evt) {
-//				btnSearchRecordActionPerformed(evt);
-//			}
-//		});
-		
-//TODO asdfas
-		
-//		searchByDate.addActionListener(new java.awt.event.ActionListener(){
-//
-//			@Override
-//			public void actionPerformed(ActionEvent evt) {
-//				btnSearchByDate(evt);
-//				
-//			}
-//			
-//			
-//			
-//		});
-
-		jMenu2.add(searchRecords);
 		jMenu2.add(searchByDate);
 
 		jMenuBar1.add(jMenu1);
@@ -485,8 +461,8 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 		records.setSize(new Dimension(200, 200));
 
-		searchFrame.add(NorthPanel, BorderLayout.NORTH);
-		searchFrame.add(records, BorderLayout.CENTER);
+		searchFrame.getContentPane().add(NorthPanel, BorderLayout.NORTH);
+		searchFrame.getContentPane().add(records, BorderLayout.CENTER);
 		searchFrame.setTitle("Search Records by Name");
 
 		searchFrame.setVisible(true);
@@ -527,7 +503,6 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JMenuItem btnCalculateBMI;
-	private javax.swing.JMenuItem searchRecords;	//TODO delete this, I didn't want to touch
 	private javax.swing.JMenuItem searchByDate;
 	private javax.swing.JMenu btnFileMenu;
 	private javax.swing.JButton btnGenerateReport;
