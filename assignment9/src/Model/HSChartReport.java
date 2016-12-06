@@ -5,6 +5,9 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.FileWriter;
 
+import org.json.JSONException;
+
+import bodyprogram.DataBase;
 import de.toolforge.googlechartwrapper.PieChart;
 import de.toolforge.googlechartwrapper.color.ChartColor;
 import de.toolforge.googlechartwrapper.data.PieChartSlice;
@@ -16,16 +19,24 @@ public class HSChartReport {
 	private PieChart pieTotalCholesterol = null;
 	private PieChart pieBodyMassIndex = null;
 	private PieChart pieBloodPressure = null;
-	
+	private DataBase pieChartInformation = new DataBase();
 	private static final int CHART_TITLE_SIZE = 24;
 	private static final int CHART_WIDTH = 550;
 	private static final int CHART_HEIGHT = 300;
 	
 	public HSChartReport(){
+		int[] pieChartArray = new int[12];
+		try {
+			 pieChartArray = pieChartInformation.pieChartInfo();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		//test data, fill from constructor? or call somewhere else
-		fillPieChartTotalCholesterol(6, 6, 7);
-		fillPieChartBodyMassIndex(2, 11, 2, 4);
-		fillPieChartBloodPressure(7, 8, 2, 1, 1);
+		fillPieChartTotalCholesterol(pieChartArray[0], pieChartArray[1], pieChartArray[2]);
+		fillPieChartBodyMassIndex(pieChartArray[3], pieChartArray[4], pieChartArray[5], pieChartArray[6]);
+		fillPieChartBloodPressure(pieChartArray[7], pieChartArray[8], pieChartArray[9], pieChartArray[10], pieChartArray[11]);
 		
 		createChartReport();
 

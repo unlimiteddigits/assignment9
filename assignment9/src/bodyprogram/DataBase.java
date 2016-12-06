@@ -24,6 +24,10 @@ public class DataBase {
 	private final byte BY_DATE = 0x01;
 	private final byte BY_NAME = 0x09;
 	
+	public DataBase(){
+		
+	}
+	
 	public DataBase(String[] patientInfo){
 		this.patientInfo = patientInfo;
 	}
@@ -164,6 +168,8 @@ public String search(int choice,String searchTerm) throws JSONException{
 	
 }
 
+
+
 public String getDateTotals(String date) throws JSONException{
 	
 	String printme = "";
@@ -263,5 +269,97 @@ public String getDateTotals(String date) throws JSONException{
 	
 }
 
+public int[] pieChartInfo() throws JSONException{
+	
+	
+    int[] pieChartInfo = new int[12];
+	
+	try{
+        URL url = new URL("http://www.sullens.net/~sice/PHP5/pieChartInfo.php");
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+        httpURLConnection.setRequestMethod("POST");
+        httpURLConnection.setDoOutput(true);
+        httpURLConnection.setDoInput(true);
+        OutputStream outputStream = httpURLConnection.getOutputStream();
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
 
+         
+  
+        
+        
+        
+
+
+  
+        bufferedWriter.flush();
+        bufferedWriter.close();
+        outputStream.close();
+  
+        httpURLConnection.disconnect();
+
+      InputStream inputStream = httpURLConnection.getInputStream();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+
+        
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) !=null){
+        	result += line + "\n" ;
+        	
+        }
+      
+      
+        
+        JSONObject jsonRootObject = new JSONObject(result);
+        JSONArray jsonArray = jsonRootObject.optJSONArray("json");
+        
+
+     
+        
+   
+  
+        for (int x = 0; x < jsonArray.length(); x++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(x);
+     
+            
+            pieChartInfo[0] = jsonObject.optInt("desirablecholesterol");
+            pieChartInfo[1] = jsonObject.optInt("borderlinehighcholesterol");
+            pieChartInfo[2] = jsonObject.optInt("highcholesterol");
+            pieChartInfo[3] = jsonObject.optInt("underweight");
+            pieChartInfo[4] = jsonObject.optInt("normalweight");
+            pieChartInfo[5] = jsonObject.optInt("overweight");
+            pieChartInfo[6] = jsonObject.optInt("obese");
+            pieChartInfo[7] = jsonObject.optInt("normalBlood");
+            pieChartInfo[8] = jsonObject.optInt("prehyper");
+            pieChartInfo[9] = jsonObject.optInt("stage1");
+            pieChartInfo[10] = jsonObject.optInt("stage2");
+            pieChartInfo[11] = jsonObject.optInt("hyper");
+            
+            
+            
+            
+            
+        }
+  
+        bufferedReader.close();
+        inputStream.close();
+
+    }catch(MalformedURLException e){
+        e.printStackTrace();
+    } catch(IOException e){
+        e.printStackTrace();
+    }	
+
+	
+	
+	
+	return pieChartInfo;
+	}
+	
+	
+	
 }
+
+
+
+

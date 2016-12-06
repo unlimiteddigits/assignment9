@@ -1,8 +1,12 @@
 package AppDriver;
 
 import Model.PatientRecord;
+
+import org.json.JSONException;
+
 import Model.HSChartReport;
 import View.HSInputWindow;
+import bodyprogram.DataBase;
 import control.PatientInformationEntryController;
 
 public class PatientHealthScreening {
@@ -31,6 +35,15 @@ public class PatientHealthScreening {
 		
 		
 		new HSChartReport();
+		
+		DataBase what = new DataBase();
+		
+		try {
+			what.pieChartInfo();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
