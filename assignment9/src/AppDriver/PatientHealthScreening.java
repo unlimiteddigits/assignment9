@@ -1,8 +1,8 @@
 package AppDriver;
 
 import Model.PatientRecord;
+import Model.HSChartReport;
 import View.HSInputWindow;
-import View.DateTotals;
 import control.PatientInformationEntryController;
 
 public class PatientHealthScreening {
@@ -30,7 +30,7 @@ public class PatientHealthScreening {
 //		dateTotals newDateTotals = new dateTotals();
 		
 		
-		
+		new HSChartReport();
 
 	}
 

@@ -6,29 +6,45 @@ import java.io.File;
 import java.io.FileWriter;
 
 import de.toolforge.googlechartwrapper.PieChart;
+import de.toolforge.googlechartwrapper.color.ChartColor;
 import de.toolforge.googlechartwrapper.data.PieChartSlice;
 import de.toolforge.googlechartwrapper.data.PieChartSlice.PieChartSliceBuilder;
 import de.toolforge.googlechartwrapper.label.ChartTitle;
 
 //TODO figure out how to modularize piechart methods or just method for each
-class HSChartReport {
-	private PieChart pieTotalCholesterol;
-	private PieChart pieBodyMassIndex;
-	private PieChart pieBloodPressure;
+public class HSChartReport {
+	private PieChart pieTotalCholesterol = null;
+	private PieChart pieBodyMassIndex = null;
+	private PieChart pieBloodPressure = null;
+	
+	private static final int CHART_TITLE_SIZE = 24;
+	private static final int CHART_WIDTH = 550;
+	private static final int CHART_HEIGHT = 300;
 	
 	public HSChartReport(){
+		//test data, fill from constructor? or call somewhere else
+		fillPieChartTotalCholesterol(6, 6, 7);
+		fillPieChartBodyMassIndex(2, 11, 2, 4);
+		fillPieChartBloodPressure(7, 8, 2, 1, 1);
+		
+		createChartReport();
+		
+//		fillPieChartTotalCholesterol(high, desirable, borderlineHigh);
+//		fillPieChartBodyMassIndex(underweight, normal, overweight, obese);
+//		fillPieChartBloodPressure(normal, prehypertension, stage1Hypertension, stage2Hypertension, hypertensiveCrisis);
 		
 	}
-	
+
 	/**
 	 * Saves data for pie chart total cholesterol
 	 * @param high
 	 * @param desirable
 	 * @param borderlineHigh
 	 */
-	public void setPieTotalCholesterol(int high, int desirable, int borderlineHigh){
-		PieChart pie = new PieChart(new Dimension(600,300));
-		pie.setChartTitle(new ChartTitle("Total%20Cholesterol", Color.BLACK, 24));
+	public void fillPieChartTotalCholesterol(int high, int desirable, int borderlineHigh){
+		PieChart pie = new PieChart(new Dimension(CHART_WIDTH,CHART_HEIGHT));
+		pie.setChartTitle(new ChartTitle("Total%20Cholesterol", Color.BLACK, CHART_TITLE_SIZE));
+		pie.addChartColor(new ChartColor(Color.PINK));
 		
 		PieChartSliceBuilder slice1Builder = new PieChartSliceBuilder(high);
 		slice1Builder.label("High");
@@ -50,31 +66,123 @@ class HSChartReport {
 		pieTotalCholesterol = pie;
 	}
 	
-	public void createChartReport(){
-//		writeUrlsToChartReport(totalCholesterolUrl, bodyMassIndexUrl, bloodPressureUrl);
+	/**
+	 * Saves data for pie chart body mass index
+	 * @param underweight
+	 * @param normal
+	 * @param overweight
+	 * @param obese
+	 */
+	public void fillPieChartBodyMassIndex(int underweight, int normal, int overweight, int obese){
+		PieChart pie = new PieChart(new Dimension(CHART_WIDTH,CHART_HEIGHT));
+		pie.setChartTitle(new ChartTitle("Body%20Mass%20Index", Color.BLACK, CHART_TITLE_SIZE));
+		pie.addChartColor(new ChartColor(Color.BLUE));
+		
+		PieChartSliceBuilder slice1Builder = new PieChartSliceBuilder(underweight);
+		slice1Builder.label("Underweight");
+		
+		PieChartSliceBuilder slice2Builder = new PieChartSliceBuilder(normal);
+		slice2Builder.label("Normal");
+
+		PieChartSliceBuilder slice3Builder = new PieChartSliceBuilder(overweight);
+		slice3Builder.label("Overweight");
+		
+		PieChartSliceBuilder slice4Builder = new PieChartSliceBuilder(obese);
+		slice4Builder.label("Obese");
+		
+		PieChartSlice slice1 = slice1Builder.build();
+		PieChartSlice slice2 = slice2Builder.build();
+		PieChartSlice slice3 = slice3Builder.build();
+		PieChartSlice slice4 = slice4Builder.build();
+		
+		pie.addPieChartSlice(slice1);
+		pie.addPieChartSlice(slice2);
+		pie.addPieChartSlice(slice3);
+		pie.addPieChartSlice(slice4);
+
+		pieBodyMassIndex = pie;
 	}
 
+	/**
+	 * Saves data for pie chart blood pressure
+	 * @param normal
+	 * @param prehypertension
+	 * @param stage1Hypertension
+	 * @param stage2Hypertension
+	 * @param hypertensiveCrisis
+	 */
+	public void fillPieChartBloodPressure(int normal, int prehypertension, int stage1Hypertension, int stage2Hypertension, int hypertensiveCrisis){
+		PieChart pie = new PieChart(new Dimension(CHART_WIDTH,CHART_HEIGHT));
+		pie.setChartTitle(new ChartTitle("Blood%20Pressure", Color.BLACK, CHART_TITLE_SIZE));
+		pie.addChartColor(new ChartColor(Color.RED));
+		
+		PieChartSliceBuilder slice1Builder = new PieChartSliceBuilder(normal);
+		slice1Builder.label("Normal");
+		
+		PieChartSliceBuilder slice2Builder = new PieChartSliceBuilder(prehypertension);
+		slice2Builder.label("Prehypertension");
+
+		PieChartSliceBuilder slice3Builder = new PieChartSliceBuilder(stage1Hypertension);
+		slice3Builder.label("Stage%201%20Hypertension");
+		
+		PieChartSliceBuilder slice4Builder = new PieChartSliceBuilder(stage2Hypertension);
+		slice4Builder.label("Stage%202%20Hypertension");
+
+		PieChartSliceBuilder slice5Builder = new PieChartSliceBuilder(hypertensiveCrisis);
+		slice5Builder.label("Hypertensive%20Crisis");
+		
+		PieChartSlice slice1 = slice1Builder.build();
+		PieChartSlice slice2 = slice2Builder.build();
+		PieChartSlice slice3 = slice3Builder.build();
+		PieChartSlice slice4 = slice4Builder.build();
+		PieChartSlice slice5 = slice5Builder.build();
+		
+		pie.addPieChartSlice(slice1);
+		pie.addPieChartSlice(slice2);
+		pie.addPieChartSlice(slice3);
+		pie.addPieChartSlice(slice4);
+		pie.addPieChartSlice(slice5);
+
+		pieBloodPressure = pie;
+	}
+	
+	/**
+	 * Creates chart html file, given all three pie charts are filled with the appropriate fill methods.
+	 */
+	public void createChartReport(){
+		if(!((pieTotalCholesterol == null) || (pieBodyMassIndex == null) || (pieBloodPressure == null))){
+			writeUrlsToChartReport(pieTotalCholesterol.getUrl(), pieBodyMassIndex.getUrl(), pieBloodPressure.getUrl());
+		}else{
+			System.out.println("[ERROR] HSChartReport:createChartReport(): All pie charts must be filled with data before html file is written");
+		}
+	}
+	
 	private void writeUrlsToChartReport(String totalCholesterolUrl, String bodyMassIndexUrl, String bloodPressureUrl){
 		String dataToWrite = 
-			"<!DOCTYPE html>" +
-			"<html>" +
-			"<head>" +
-			"	<title>Health Screening Summary</title>" +
-			"	<style type=\"text/css\">" +
-			"		div img{" +
-			"			display: block;" +
-			"			margin: auto;" +
-			"		}" +
-			"	</style>" +
-			"</head>" +
-			"<body>" +
-			"	<h1>Health Screening Results</h1>" +
-			"	<div>" +
-			"		<img src=\"" + totalCholesterolUrl + "\">" +
-			"		<img src=\"" + bodyMassIndexUrl + "\">" +
-			"		<img src=\"" + bloodPressureUrl + "\">" +
-			"	</div>" +
-			"</body>" +
+			"<!DOCTYPE html>" + "\n" +
+			"<html>" + "\n" +
+			"<head>" + "\n" +
+			"	<title>Health Screening Summary</title>" + "\n" +
+			"	<style type=\"text/css\">" + "\n" +
+			"		div img{" + "\n" +
+			"			display: block;" + "\n" +
+			"			margin: 1em auto;" + "\n" +
+			"			border: 1px solid black;" + "\n" +
+			"			box-shadow: 0px 0px 17px black;" + "\n" +
+			"		}" + "\n" +
+			"		h1{" + "\n" +
+			"			text-align: center;" + "\n" +
+			"		}" + "\n" +
+			"	</style>" + "\n" +
+			"</head>" + "\n" +
+			"<body>" + "\n" +
+			"	<h1>Health Screening Results</h1>" + "\n" +
+			"	<div>" + "\n" +
+			"		<img src=\"" + totalCholesterolUrl + "\">" + "\n" +
+			"		<img src=\"" + bodyMassIndexUrl + "\">" + "\n" +
+			"		<img src=\"" + bloodPressureUrl + "\">" + "\n" +
+			"	</div>" + "\n" +
+			"</body>" + "\n" +
 			"</html>";
 		
 		FileWriter writer;
