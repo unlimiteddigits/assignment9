@@ -28,8 +28,8 @@ public class HSChartReport {
 		fillPieChartBloodPressure(7, 8, 2, 1, 1);
 		
 		createChartReport();
-		
-//		fillPieChartTotalCholesterol(high, desirable, borderlineHigh);
+
+//		fillPieChartTotalCholesterol(desirable, borderlineHigh, high);
 //		fillPieChartBodyMassIndex(underweight, normal, overweight, obese);
 //		fillPieChartBloodPressure(normal, prehypertension, stage1Hypertension, stage2Hypertension, hypertensiveCrisis);
 		
@@ -37,23 +37,23 @@ public class HSChartReport {
 
 	/**
 	 * Saves data for pie chart total cholesterol
-	 * @param high
 	 * @param desirable
 	 * @param borderlineHigh
+	 * @param high
 	 */
-	public void fillPieChartTotalCholesterol(int high, int desirable, int borderlineHigh){
+	public void fillPieChartTotalCholesterol(int desirable, int borderlineHigh, int high){
 		PieChart pie = new PieChart(new Dimension(CHART_WIDTH,CHART_HEIGHT));
 		pie.setChartTitle(new ChartTitle("Total%20Cholesterol", Color.BLACK, CHART_TITLE_SIZE));
 		pie.addChartColor(new ChartColor(Color.PINK));
 		
-		PieChartSliceBuilder slice1Builder = new PieChartSliceBuilder(high);
-		slice1Builder.label("High");
+		PieChartSliceBuilder slice1Builder = new PieChartSliceBuilder(desirable);
+		slice1Builder.label("Desirable");
 		
-		PieChartSliceBuilder slice2Builder = new PieChartSliceBuilder(desirable);
-		slice2Builder.label("Desirable");
+		PieChartSliceBuilder slice2Builder = new PieChartSliceBuilder(borderlineHigh);
+		slice2Builder.label("Borderline%20High");
 
-		PieChartSliceBuilder slice3Builder = new PieChartSliceBuilder(borderlineHigh);
-		slice3Builder.label("Borderline%20High");
+		PieChartSliceBuilder slice3Builder = new PieChartSliceBuilder(high);
+		slice3Builder.label("High");
 		
 		PieChartSlice slice1 = slice1Builder.build();
 		PieChartSlice slice2 = slice2Builder.build();
