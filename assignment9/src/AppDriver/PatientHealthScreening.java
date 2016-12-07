@@ -25,7 +25,6 @@ public class PatientHealthScreening {
 			
 		
 			
-			
 				
 				} catch (Exception e) {
 			e.printStackTrace();
