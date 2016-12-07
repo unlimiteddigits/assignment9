@@ -18,6 +18,8 @@ import java.awt.event.KeyListener;
 import java.rmi.RemoteException;
 import java.text.DecimalFormat;
 
+import javax.swing.JOptionPane;
+
 import org.json.JSONException;
 
 import com.beetledev.www.BmiServiceSoapProxy;
@@ -140,7 +142,26 @@ public class PatientInformationEntryController {
 			setBmiClassification();
 		}
 	});
-	
+
+	view.addShowPieChartsActionListener(new ActionListener(){
+		@Override
+		public void actionPerformed(java.awt.event.ActionEvent evt) {
+			
+			HSChartReport chart = new HSChartReport();
+			
+			try {
+				chart.openChartReportInDefaultApplication();;
+				//JOptionPane.showMessageDialog(null, "Show Pie Chart?  You want what?"); 
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		
+		
+	});
+
 view.addBmiMenuCalculationactionListener(new ActionListener(){
 	@Override
 	public void actionPerformed(java.awt.event.ActionEvent evt) {

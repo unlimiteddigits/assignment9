@@ -20,6 +20,9 @@ import java.awt.event.KeyListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
 
 /**
  *Responsible for main view to interact with Nurse
@@ -381,7 +384,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 	}
 	
 	public String getName(){
-		return txtPatientName.getText().toString();
+		return (txtPatientName.getText().toString()+txtPatientNameLast.getText());
 	}
 	
 	public void setRiskIndicator(String indicator){
@@ -471,6 +474,10 @@ public class HSInputWindow extends javax.swing.JFrame {
 		btnCalculateBMI.addActionListener(a);
 	}
 
+	public void addShowPieChartsActionListener(ActionListener a) {
+		mntmShowPieCharts.addActionListener(a);
+	};
+	
 	public void addBmiFocusListener(FocusListener f){
 		txtBMI.addFocusListener(f);
 	}
