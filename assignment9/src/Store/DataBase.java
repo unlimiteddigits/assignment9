@@ -188,6 +188,7 @@ public String search(String searchTerm) throws JSONException{
  * @throws JSONException
  */
 public String getDateTotals(String date) throws JSONException{
+
 	
 	String printme = "";
 	
@@ -286,6 +287,11 @@ public String getDateTotals(String date) throws JSONException{
 	
 }
 
+/**
+ * Gets the total classifications by a given date
+ * @return
+ * @throws JSONException
+ */
 public int[] pieChartInfo() throws JSONException{
 	
 	

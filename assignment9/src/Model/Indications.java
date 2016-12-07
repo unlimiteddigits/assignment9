@@ -1,7 +1,11 @@
 package Model;
 
 import control.Conversion;
-
+/**
+ * Provides the indicators for bmi,bloodpressure, and cholesterol
+ * @author Daniel Tayloe
+ *
+ */
 public class Indications {
 	   private String bloodPressureIndicator;
 	    private final byte CHECK_FEET = 0x20;
@@ -15,7 +19,11 @@ public class Indications {
 	public Indications(){
 		
 	}
-	
+	/**
+	 * Indicates the bmi risk
+	 * @param indicator
+	 * @return
+	 */
 	public String indicateBMIRisk(String indicator) {
 		String Indicator = "";
 		if (indicator.isEmpty()) {
@@ -38,7 +46,11 @@ public class Indications {
 		return bmiClassification;
 	}
 	
-	
+	/**
+	 * Makes sure the patients weight fits a given range
+	 * @param weight
+	 * @return
+	 */
 	public boolean checkWeight(final String weight) {
 		
 		boolean result = true;
@@ -52,7 +64,11 @@ public class Indications {
 	}
 	
 	
-	
+	/**
+	 * Indicates the blood pressure classification
+	 * @param bloodPressure
+	 * @return
+	 */
 	  public String indicateBloodPressureRisk(String bloodPressure) {
 			String Indicator = "";
 			if (bloodPressure.isEmpty()) {
@@ -89,7 +105,12 @@ public class Indications {
 			return bloodPressureIndicator;
 		}
 	
-	  
+	  /**
+	   * Makes sure the patients height fits within a given range
+	   * @param boxes
+	   * @param feetOrInches
+	   * @return
+	   */
 	  public boolean checkHeights(final byte boxes,String feetOrInches) {
 			
 			boolean result = true;
@@ -110,7 +131,11 @@ public class Indications {
 			return result;
 		}
 	  
-	  
+	  /**
+	   * Indicates the cholesterol risk
+	   * @param cholesterol
+	   * @return
+	   */
 	   public String indicateCholesterolRisk(String cholesterol) {
 			String Indicator = "";
 			if (cholesterol.isEmpty()) {
@@ -134,11 +159,18 @@ public class Indications {
 	  
 	  
 	
-
+/**
+ * Gets the feet byte
+ * @return
+ */
 	  public byte getFeetByte(){
 	    	return CHECK_FEET;
 	    }
-	    
+	    /**
+	     * Checks the patients blood pressures
+	     * @param bloodPressure
+	     * @return
+	     */
 	    public boolean checkBloodPressure(String bloodPressure){
 	    	boolean result = true;
 			if (!bloodPressure.matches("[0-9]+/[0-9]+")) {
