@@ -70,9 +70,9 @@ public class HSChartReport {
 		PieChartSlice slice2 = slice2Builder.build();
 		PieChartSlice slice3 = slice3Builder.build();
 		
-		pie.addPieChartSlice(slice1);
-		pie.addPieChartSlice(slice2);
-		pie.addPieChartSlice(slice3);
+		if(slice1.getValue() != 0){pie.addPieChartSlice(slice1);}
+		if(slice2.getValue() != 0){pie.addPieChartSlice(slice2);}
+		if(slice3.getValue() != 0){pie.addPieChartSlice(slice3);}
 
 		pieTotalCholesterol = pie;
 	}
@@ -106,10 +106,10 @@ public class HSChartReport {
 		PieChartSlice slice3 = slice3Builder.build();
 		PieChartSlice slice4 = slice4Builder.build();
 		
-		pie.addPieChartSlice(slice1);
-		pie.addPieChartSlice(slice2);
-		pie.addPieChartSlice(slice3);
-		pie.addPieChartSlice(slice4);
+		if(slice1.getValue() != 0){pie.addPieChartSlice(slice1);}
+		if(slice2.getValue() != 0){pie.addPieChartSlice(slice2);}
+		if(slice3.getValue() != 0){pie.addPieChartSlice(slice3);}
+		if(slice4.getValue() != 0){pie.addPieChartSlice(slice4);}
 
 		pieBodyMassIndex = pie;
 	}
@@ -148,11 +148,11 @@ public class HSChartReport {
 		PieChartSlice slice4 = slice4Builder.build();
 		PieChartSlice slice5 = slice5Builder.build();
 		
-		pie.addPieChartSlice(slice1);
-		pie.addPieChartSlice(slice2);
-		pie.addPieChartSlice(slice3);
-		pie.addPieChartSlice(slice4);
-		pie.addPieChartSlice(slice5);
+		if(slice1.getValue() != 0){pie.addPieChartSlice(slice1);}
+		if(slice2.getValue() != 0){pie.addPieChartSlice(slice2);}
+		if(slice3.getValue() != 0){pie.addPieChartSlice(slice3);}
+		if(slice4.getValue() != 0){pie.addPieChartSlice(slice4);}
+		if(slice5.getValue() != 0){pie.addPieChartSlice(slice5);}
 
 		pieBloodPressure = pie;
 	}
