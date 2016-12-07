@@ -341,7 +341,7 @@ public int[] pieChartInfo() throws JSONException{
             
             pieChartInfo[0] = jsonObject.optInt("desirablecholesterol");
             pieChartInfo[1] = jsonObject.optInt("borderlinehighcholesterol");
-            pieChartInfo[2] = jsonObject.optInt("highcholesterol");
+            pieChartInfo[2] = jsonObject.optInt("highCholesterol");
             pieChartInfo[3] = jsonObject.optInt("underweight");
             pieChartInfo[4] = jsonObject.optInt("normalweight");
             pieChartInfo[5] = jsonObject.optInt("overweight");
