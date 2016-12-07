@@ -33,6 +33,11 @@ public class PatientInformationEntryController {
 	private final PatientRecord model;
 	private final Indications indications = new Indications();
 	private final DateTotals dateInformation = new DateTotals();
+	/**
+	 * Constructor, Moderates the interaction between the PatientRecord and HSInputwindow
+	 * Also adds all the necessary listeners to the view
+	 * 
+	 */
 	public PatientInformationEntryController(HSInputWindow view,PatientRecord model){
 		
 		this.view = view;
@@ -265,92 +270,150 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 	}
 
 	
-	
+	/**
+	 * Sets the views cholesterol classification textfield
+	 * 
+	 */
 	public void setIndicator(String indicator){
 		view.setRiskIndicator(model.getCholesterolRisk());
 	}
-	
+	/**
+	 * Sets the views blood pressure classification text field
+	 * 
+	 */
 	public void setBloodPressureIndicator(String indicator){
 		view.setBloodPressureIndicator(model.getBloodPressureRisk());
 	}
-	
+	/**
+	 * sets the views bmi classification text field
+	 */
 	public void setBmiClassification(){
 	view.setBmiIndicator(model.getBmiRisk());
 	}
-	
+	/**
+	 * Sets the name of the patient
+	 * 
+	 */
 	public void setPatientName(String name){
 		
 		model.setName(name);
 	}
-	
+	/**
+	 * sets the patients bmi risk
+	 */
 	public void setBmiRisk(){
 		model.setBmiRisk(indications.indicateBMIRisk(view.getBmiText()));
 	}
-	
+	/**
+	 * Sets the patients age
+	 * 
+	 */
 	public void setPatientAge(String currentAge){
 		model.setAge(currentAge);
 	}
-	
+	/**
+	 *Sets the patients cholesterol value 
+	 *
+	 */
 	public void setPatientCholesterol(String currentCholesterol){
 		model.setCholesterol(currentCholesterol);
 	}
-	
+	/**
+	 * Sets the patients bmi value
+	 * 
+	 */
 	public void setPatientBmi(String currentBmiText){
 		model.setBMI(currentBmiText);
 	}
-	
+	/**
+	 * Sets the patients weight value
+	 * 
+	 */
 	public void setPatientWeight(String currentWeight){
 		model.setWeight(currentWeight);
 	}
-	
+	/**
+	 * Sets the patients blood pressure value
+	 * 
+	 */
 	public void setBloodPressure(String currentBloodPressure){
 		model.setBloodPressure(currentBloodPressure);
 	}
-	
+	/**
+	 * Sets the patients feet value
+	 * @param currentFeet
+	 */
 	public void setPatientHeightFeet(String currentFeet){
 		model.setHeightFeet(currentFeet);
 	}
-	
+	/**
+	 * Sets the patients inches value
+	 * 
+	 */
 	public void setPatientHeightInches(String currentInches){
 		model.setHeightInches(currentInches);
 	}
-	
+	/**
+	 * Sets the cholesterol risk of the patient
+	 */
 	public void setPatientCholesterolRisk(){
 		model.setCholesterolRisk(indications.indicateCholesterolRisk(view.getCholesterolText()));
 	}
-	
+	/**
+	 * sets the patients blood pressure risk
+	 */
 	public void setBloodPressureRisk(){
 		model.setBloodPressureRisk(indications.indicateBloodPressureRisk(view.getBloodPressureText()));
 	}
 	
-	
+	/**
+	 * Sets the name field of the view
+	 */
 	public void setNameField(){
 		view.setNameField(model.getName());
 	}
-	
+	/**
+	 * Sets the date the patient record was entered
+	 * 
+	 */
 	public void setPatientDate(String currentDate){
 		model.setDate(currentDate);
 	}
-	
+	/**
+	 * Sets the background of the feet text field
+	 * 
+	 */
 	public void setFeetBackground(Color color){
 		view.setFeetBackground(color);
 	}
-	
+	/**
+	 * Sets the background of the inches text field
+	 * 
+	 */
 	public void setInchesBackground(Color color){
 		view.setInchesBackground(color);
 	}
-	
+	/**
+	 * Sets the background of the blood pressure text feild
+	 *
+	 */
 	public void setViewBackground(Color color){
 	
 		view.setBloodPressureBackground(color);
 		
 	}
-	
+	/**
+	 * Sets the background of the weight text field
+	 * 
+	 */
 	public void setWeightBackground(Color color){
 		view.setWeightBackground(color);
 	}
 	
-
+/**
+ * Returns a formatted double ex: 33.892 would become 33.89
+ * 
+ */
 	public  double formatMyDouble(double formatMe){
 		
 		DecimalFormat myFormat = new DecimalFormat("##.##");
