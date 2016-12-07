@@ -530,6 +530,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 	
 	/**
 	 * Reset all fields to start a new record
+	 * 
 	 */
 	public void clearComponents() {
 		txtPatientName.setText("");

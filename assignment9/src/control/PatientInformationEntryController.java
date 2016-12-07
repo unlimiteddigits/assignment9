@@ -254,6 +254,7 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 
 			DataBase insert = new DataBase(patientInfo);
 			view.clearComponents();
+			
 			insert.insertRecord();
 		}
 	});
