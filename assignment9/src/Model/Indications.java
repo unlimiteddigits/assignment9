@@ -1,6 +1,6 @@
 package Model;
 
-import bodyprogram.Conversion;
+import control.Conversion;
 
 public class Indications {
 	   private String bloodPressureIndicator;

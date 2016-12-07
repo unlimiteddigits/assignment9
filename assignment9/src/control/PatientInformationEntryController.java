@@ -2,30 +2,22 @@ package control;
 
 
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.rmi.RemoteException;
 import java.text.DecimalFormat;
-
-import org.json.JSONException;
 
 import com.beetledev.www.BmiServiceSoapProxy;
 import com.beetledev.www.ConverterServiceSoapProxy;
 
 import Model.*;
+import Store.DataBase;
 import View.*;
-import bodyprogram.DataBase;
 
 public class PatientInformationEntryController {
 
@@ -237,6 +229,16 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 	});
 	
 	
+	view.addLastNameListener(new KeyAdapter(){
+		
+		
+		public void keyPressed(KeyEvent e){
+			setPatientName(view.getName());
+		}
+		
+	});
+	
+	
 	view.addAgeListener(new KeyAdapter(){
 		
 		public void keyPressed(KeyEvent e){
@@ -254,6 +256,12 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 	});
 	
 	view.addNameFocusListener(new FocusAdapter(){
+		public void focusLost(FocusEvent arg0){
+			setPatientName(view.getName());
+		}
+	});
+	
+	view.addLastNameFocusListener(new FocusAdapter(){
 		public void focusLost(FocusEvent arg0){
 			setPatientName(view.getName());
 		}

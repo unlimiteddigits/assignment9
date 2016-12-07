@@ -1,7 +1,5 @@
 package Model;
 
-import bodyprogram.Conversion;
-
 /**
  *
  * @author jacob psimos
@@ -18,7 +16,8 @@ public class PatientRecord {
     private String date;
     private String cholesterolRisk;
     private String bloodPressureRisk;
-    private String checkHeight;
+    @SuppressWarnings("unused")
+	private String checkHeight;
     private String bmiRisk;
   
     
