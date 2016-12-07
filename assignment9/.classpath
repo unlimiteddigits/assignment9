@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="src/org.apache.commons.logging_1.0.4.v201101211617.jar"/>
 	<classpathentry kind="lib" path="src/saaj.jar"/>
 	<classpathentry kind="lib" path="src/bodyprogram/json-1.5-20090211.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
