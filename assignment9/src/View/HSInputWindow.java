@@ -8,8 +8,9 @@ package View;
 import java.awt.Color;
 import javax.swing.JFileChooser;
 
-import bodyprogram.Conversion;
 import bodyprogram.RecordWindow;
+import control.Conversion;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
@@ -306,10 +307,10 @@ public class HSInputWindow extends javax.swing.JFrame {
 		JFileChooser jf = new JFileChooser("Open a patient record");
 		jf.showOpenDialog(this);
 
-		if (jf.getSelectedFile() != null) {
-			RecordWindow rw = new RecordWindow(RecordWindow.RECORD_OPEN, jf.getSelectedFile().getAbsolutePath());
-			rw.setVisible(true);
-		}
+//		if (jf.getSelectedFile() != null) {
+//			RecordWindow rw = new RecordWindow(RecordWindow.RECORD_OPEN, jf.getSelectedFile().getAbsolutePath());
+//			rw.setVisible(true);
+//		}
 	}
 
 

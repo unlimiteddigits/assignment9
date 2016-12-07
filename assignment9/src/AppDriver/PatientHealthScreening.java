@@ -1,12 +1,12 @@
 package AppDriver;
 
 import Model.PatientRecord;
+import Store.DataBase;
 
 import org.json.JSONException;
 
 import Model.HSChartReport;
 import View.HSInputWindow;
-import bodyprogram.DataBase;
 import control.PatientInformationEntryController;
 
 public class PatientHealthScreening {

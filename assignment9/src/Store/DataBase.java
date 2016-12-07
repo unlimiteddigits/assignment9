@@ -1,4 +1,4 @@
-package bodyprogram;
+package Store;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

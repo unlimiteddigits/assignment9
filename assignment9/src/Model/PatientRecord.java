@@ -1,6 +1,6 @@
 package Model;
 
-import bodyprogram.Conversion;
+import control.Conversion;
 
 /**
  *

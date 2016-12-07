@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import org.json.JSONException;
 
-import bodyprogram.DataBase;
+import Store.DataBase;
 import de.toolforge.googlechartwrapper.PieChart;
 import de.toolforge.googlechartwrapper.color.ChartColor;
 import de.toolforge.googlechartwrapper.data.PieChartSlice;
