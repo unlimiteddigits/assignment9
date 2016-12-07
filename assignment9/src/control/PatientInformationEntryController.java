@@ -285,9 +285,27 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 					model.getHeightFeet(), model.getHeightInches(), model.getWeight(),
 					model.getCholesterol(), model.getBmi(), model.getBloodPressure(),model.getCholesterolRisk()
 					,model.getBmiRisk(),model.getBloodPressureRisk()};
-			String date = "1"; 
-			String line = "";
-
+String t = "";
+			for(int i = 0; i < patientInfo.length; i++){
+				t = 
+				"Health Screening for " + patientInfo[0]
+//				+ "\nDate: " + patientInfo[1]
+//				+ "\nAge: " +patientInfo[2]
+//				+ "\tHeight: " +patientInfo[3]
+//				+ "' " +patientInfo[4]
+//				+ "'\tWeight: " +patientInfo[5]
+				+ "\n\nTotal Cholesterol: " +patientInfo[6]
+				+ "\t" + patientInfo[7]
+				+ "\nBody Mass Index: " +patientInfo[8]
+				+ "\t" + patientInfo[9]
+				+ "\nBlood Pressure: " +patientInfo[10]
+				+ "\t" + patientInfo[11]
+				+ "\n\n";
+				
+			}
+			
+			System.out.println(t);
+			
 			DataBase insert = new DataBase(patientInfo);
 			view.clearComponents();
 

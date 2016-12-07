@@ -146,24 +146,24 @@ public String search(String searchTerm) throws JSONException{
         for (int x = 0; x < jsonArray.length(); x++) {
             JSONObject jsonObject = jsonArray.getJSONObject(x);
              printme += "Health Screening for " + jsonObject.optString("name")
-            		+ "\nDate: " + jsonObject.optString("date")
-            		+ "\nAge: " +jsonObject.optString("age")
-            		+ "\tHeight: " +jsonObject.optString("feet")
-            		+ "' " +jsonObject.optString("inches")
-            		+ "'\tWeight: " +jsonObject.optString("weight")
-            		+ "\nTotal Cholesterol: " +jsonObject.optString("cholesterol")
+//            		+ "\nDate: " + jsonObject.optString("date")
+//            		+ "\nAge: " +jsonObject.optString("age")
+//            		+ "\tHeight: " +jsonObject.optString("feet")
+//            		+ "' " +jsonObject.optString("inches")
+//            		+ "'\tWeight: " +jsonObject.optString("weight")
+            		+ "\n\nTotal Cholesterol: " +jsonObject.optString("cholesterol")
             		+ "\t" + jsonObject.optString("cholesterolIndicator")
             		+ "\nBody Mass Index: " +jsonObject.optString("bmi")
             		+ "\t" + jsonObject.optString("bmiIndicator")
             		+ "\nBlood Pressure: " +jsonObject.optString("pressure") 
             		+ "\t" + jsonObject.optString("bloodPressureIndicator")
-            		+ "\n\n";
-            		
-
-
-       
+            		+ "\n\n"
+            		+ "------------------------\n";
+             
         }
-     
+        
+        System.out.println(printme);
+        
         bufferedReader.close();
         inputStream.close();
 

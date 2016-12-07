@@ -159,11 +159,6 @@ public class HSInputWindow extends javax.swing.JFrame {
 		txtAge.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(
 				new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###"))));
 		txtAge.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-		txtAge.addKeyListener(new java.awt.event.KeyAdapter() {
-			public void keyReleased(java.awt.event.KeyEvent evt) {
-				txtAge_TextChange(evt);
-			}
-		});
 
 		jLabel7.setText("BMI:");
 
@@ -302,23 +297,6 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 
 	
-	private void txtAge_TextChange(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtAge_TextChange
-		checkAge();
-		
-	}
-	
-	private boolean checkAge() {
-		String value = txtAge.getText();
-		boolean result = true;
-		if (!Conversion.IsValidInteger(value, 1, 120)) {
-			txtAge.setBackground(Color.PINK);
-			result = false;
-		} else {
-			txtAge.setBackground(Color.WHITE);
-		}
-		return result;
-	}
-
 	
 	
 
