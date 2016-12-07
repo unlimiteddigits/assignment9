@@ -8,6 +8,10 @@ public class Indications {
 		private final byte CHECK_INCHES = 0x08;
 		private String cholesterolRisk;
 		  private String bmiClassification;
+		  
+		  /**
+		   * Constructor
+		   */
 	public Indications(){
 		
 	}

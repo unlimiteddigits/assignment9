@@ -23,15 +23,22 @@ public class DataBase {
 	private String[] patientInfo;
 	private final byte BY_DATE = 0x01;
 	private final byte BY_NAME = 0x09;
-	
+	/**
+	 * Constructor 
+	 */
 	public DataBase(){
 		
 	}
-	
+	/**
+	 * Constructor with parameter
+	 * @param patientInfo
+	 */
 	public DataBase(String[] patientInfo){
 		this.patientInfo = patientInfo;
 	}
-	
+	/**
+	 * Inserts the patient record into the database
+	 */
 public void insertRecord(){	
 	try{
         URL url = new URL("http://www.sullens.net/~sice/PHP5/insertRecord.php");
@@ -53,7 +60,7 @@ public void insertRecord(){
         		URLEncoder.encode("cholesterolIndicator","UTF-8")+"="+URLEncoder.encode(patientInfo[9],"UTF-8")+"&"+
         		URLEncoder.encode("bmiIndicator","UTF-8")+"="+URLEncoder.encode(patientInfo[10],"UTF-8")+"&"+
         		URLEncoder.encode("bloodPressureIndicator","UTF-8")+"="+URLEncoder.encode(patientInfo[11],"UTF-8");
-System.out.println(post_data);
+
         bufferedWriter.write(post_data);
         bufferedWriter.flush();
         bufferedWriter.close();
@@ -77,8 +84,14 @@ System.out.println(post_data);
 
 }
 
-
-public String search(int choice,String searchTerm) throws JSONException{
+/**
+ * Searches the database for records by date
+ * @param choice
+ * @param searchTerm
+ * @return
+ * @throws JSONException
+ */
+public String search(String searchTerm) throws JSONException{
 	
 	String printme = "";
 	
@@ -94,17 +107,13 @@ public String search(int choice,String searchTerm) throws JSONException{
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
         String post_data = "";
         
-        if(choice == 0){
+   
          post_data =    URLEncoder.encode("searchBy","UTF-8")+"="+URLEncoder.encode("date","UTF-8")+"&"
         + URLEncoder.encode("searchTerm","UTF-8")+"="+URLEncoder.encode(searchTerm,"UTF-8");
          
   
         
-        }else if(choice == 1){
-            post_data =    URLEncoder.encode("searchBy","UTF-8")+"="+URLEncoder.encode("name","UTF-8")+"&"
-                    + URLEncoder.encode("searchTerm","UTF-8")+"="+URLEncoder.encode(searchTerm,"UTF-8");
-
-        }
+      
        
 
 
@@ -144,8 +153,12 @@ public String search(int choice,String searchTerm) throws JSONException{
             		+ "' " +jsonObject.optString("inches")
             		+ "'\tWeight: " +jsonObject.optString("weight")
             		+ "\nTotal Cholesterol: " +jsonObject.optString("cholesterol")
+            		+ "\t" + jsonObject.optString("cholesterolIndicator")
             		+ "\nBody Mass Index: " +jsonObject.optString("bmi")
-            		+ "\nBlood Pressure: " +jsonObject.optString("pressure") + "\n\n";
+            		+ "\t" + jsonObject.optString("bmiIndicator")
+            		+ "\nBlood Pressure: " +jsonObject.optString("pressure") 
+            		+ "\t" + jsonObject.optString("bloodPressureIndicator")
+            		+ "\n\n";
             		
 
 

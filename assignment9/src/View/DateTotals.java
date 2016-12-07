@@ -95,7 +95,7 @@ public void searchTotalsByDate(){
 			DataBase search = new DataBase(null);
 
 			try {
-				dbResults.setText(search.search(0, datePicker.getDate().toString()));
+				dbResults.setText(search.search( datePicker.getDate().toString()));
 
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -226,7 +226,7 @@ public void searchRecordsByDate(){
 			DataBase search = new DataBase(null);
 
 			try {
-				dbResults.setText(search.search(0, datePicker.getDate().toString()));
+				dbResults.setText(search.search( datePicker.getDate().toString()));
 
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -252,7 +252,7 @@ public void searchRecordsByDate(){
 			DataBase search = new DataBase(null);
 
 			try {
-				dbResults.setText(search.search(0, datePicker.getDate().toString()));
+				dbResults.setText(search.search( datePicker.getDate().toString()));
 
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
