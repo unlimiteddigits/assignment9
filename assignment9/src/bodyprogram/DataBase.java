@@ -21,8 +21,7 @@ public class DataBase {
 
 	
 	private String[] patientInfo;
-	private final byte BY_DATE = 0x01;
-	private final byte BY_NAME = 0x09;
+
 	/**
 	 * Constructor 
 	 */
@@ -182,7 +181,12 @@ public String search(String searchTerm) throws JSONException{
 }
 
 
-
+/**
+ * Retrieves the classification counts from the database for a given date
+ * @param date
+ * @return
+ * @throws JSONException
+ */
 public String getDateTotals(String date) throws JSONException{
 	
 	String printme = "";
