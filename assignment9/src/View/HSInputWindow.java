@@ -28,6 +28,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -578,5 +580,21 @@ public class HSInputWindow extends javax.swing.JFrame {
 	
 	public void addSearchByDateActionListener(ActionListener a){
 		searchByDate.addActionListener(a);
+	}
+	
+	public void clearComponents() {
+
+		txtPatientName.setText("");
+		txtPatientHeight1.setText("");
+		txtPatientWeight.setText("");
+		txtPatientHeight2.setText("");
+		//txtDate.setDate(null);
+		txtCholesterol.setText("");
+		txtAge.setText("");
+		txtBMI.setText("");
+		txtBloodPressure.setText("");
+		txtBloodPressureIndicator.setText("");
+		txtBMIIndicator.setText("");
+		txtCholesterolIndicator.setText("");
 	}
 }
