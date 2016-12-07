@@ -8,7 +8,6 @@ package View;
 import java.awt.Color;
 import javax.swing.JFileChooser;
 
-import bodyprogram.RecordWindow;
 import control.Conversion;
 
 import javax.swing.GroupLayout.Alignment;
