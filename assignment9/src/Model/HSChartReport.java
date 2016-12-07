@@ -1,9 +1,11 @@
 package Model;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 
 import org.json.JSONException;
 
@@ -14,12 +16,12 @@ import de.toolforge.googlechartwrapper.data.PieChartSlice;
 import de.toolforge.googlechartwrapper.data.PieChartSlice.PieChartSliceBuilder;
 import de.toolforge.googlechartwrapper.label.ChartTitle;
 
-//TODO figure out how to modularize piechart methods or just method for each
 public class HSChartReport {
 	private PieChart pieTotalCholesterol = null;
 	private PieChart pieBodyMassIndex = null;
 	private PieChart pieBloodPressure = null;
 	private DataBase pieChartInformation = new DataBase();
+	private static final String CHART_FILENAME = "ChartReport.html";
 	private static final int CHART_TITLE_SIZE = 24;
 	private static final int CHART_WIDTH = 550;
 	private static final int CHART_HEIGHT = 300;
@@ -40,6 +42,8 @@ public class HSChartReport {
 		
 		createChartReport();
 
+//		openChartReportInDefaultApplication();
+		
 //		fillPieChartTotalCholesterol(desirable, borderlineHigh, high);
 //		fillPieChartBodyMassIndex(underweight, normal, overweight, obese);
 //		fillPieChartBloodPressure(normal, prehypertension, stage1Hypertension, stage2Hypertension, hypertensiveCrisis);
@@ -168,6 +172,14 @@ public class HSChartReport {
 		}
 	}
 	
+	public void openChartReportInDefaultApplication(){
+		try {
+			Desktop.getDesktop().open(new File(CHART_FILENAME));
+		} catch (IOException e) {
+			System.out.println("[ERROR] HSChartReport:openChartReportInDefaultApplication(): Could not open " + CHART_FILENAME + " in default program");
+		}
+	}
+	
 	private void writeUrlsToChartReport(String totalCholesterolUrl, String bodyMassIndexUrl, String bloodPressureUrl){
 		String dataToWrite = 
 			"<!DOCTYPE html>" + "\n" +
@@ -198,7 +210,7 @@ public class HSChartReport {
 		
 		FileWriter writer;
 		try {
-			writer = new FileWriter(new File("ChartReport.html"), false);
+			writer = new FileWriter(new File(CHART_FILENAME), false);
 			
 			writer.write(dataToWrite);
 			
