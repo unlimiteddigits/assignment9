@@ -533,7 +533,6 @@ public class HSInputWindow extends javax.swing.JFrame {
 		searchByDate.addActionListener(a);
 	}
 	
-
 	
 	/**
 	 * Reset all fields to start a new record
