@@ -295,6 +295,7 @@ public int[] pieChartInfo() throws JSONException{
         URL url = new URL("http://www.sullens.net/~sice/PHP5/pieChartInfo.php");
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         httpURLConnection.setRequestMethod("POST");
+        
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setDoInput(true);
         OutputStream outputStream = httpURLConnection.getOutputStream();

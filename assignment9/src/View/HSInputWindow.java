@@ -384,7 +384,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 	}
 	
 	public String getName(){
-		return (txtPatientName.getText().toString()+txtPatientNameLast.getText());
+		return (txtPatientName.getText().toString() + " " +txtPatientNameLast.getText());
 	}
 	
 	public void setRiskIndicator(String indicator){
@@ -456,6 +456,14 @@ public class HSInputWindow extends javax.swing.JFrame {
 	
 	public void addNameListener(KeyListener k){
 		txtPatientName.addKeyListener(k);
+	}
+	
+	public void addLastNameListener(KeyListener k){
+		txtPatientNameLast.addKeyListener(k);
+	}
+	
+	public void addLastNameFoucsListener(FocusListener f){
+		txtPatientNameLast.addFocusListener(f);
 	}
 	
 	public void addCholesterolFieldKeyListener(KeyListener k){

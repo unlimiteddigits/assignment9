@@ -237,6 +237,15 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 	});
 	
 	
+	view.addLastNameListener(new KeyAdapter(){
+		
+
+		public void keyPressed(KeyEvent e){
+			setPatientName(view.getName());
+		}
+		
+	});
+	
 	view.addAgeListener(new KeyAdapter(){
 		
 		public void keyPressed(KeyEvent e){
@@ -259,6 +268,11 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 		}
 	});
 	
+	view.addLastNameFoucsListener(new FocusAdapter(){
+		public void focusLost(FocusEvent arg0){
+			setPatientName(view.getName());
+		}
+	});
 	
 	
 	view.addReportButtonActionListener(new ActionListener(){
