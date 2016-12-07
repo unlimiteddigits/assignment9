@@ -154,6 +154,8 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 			setBmiRisk();
 			setPatientBmi(view.getBmiText());
 			view.setBmiText(formatMyDouble(newProxy.getBmiValue(newConverter.lbs2Kg(Integer.parseInt(view.getWeightText())), newConverter.in2Cm(Integer.parseInt(view.getPatientHeightInFeetText()) * 12) + Integer.parseInt(view.getPatientHeightInInchesText()))) + "");
+			setBmiRisk();
+			setPatientBmi(view.getBmiText());
 			setBmiClassification();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -251,7 +253,7 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 			String line = "";
 
 			DataBase insert = new DataBase(patientInfo);
-
+			view.clearComponents();
 			insert.insertRecord();
 		}
 	});
