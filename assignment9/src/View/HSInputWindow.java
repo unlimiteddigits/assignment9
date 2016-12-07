@@ -94,8 +94,6 @@ public class HSInputWindow extends javax.swing.JFrame {
 		txtBloodPressure.setBounds(101, 131, 71, 20);
 
 		jMenuBar1 = new javax.swing.JMenuBar();
-		btnFileMenu = new javax.swing.JMenu();
-		btnOpenFile = new javax.swing.JMenuItem();
 		jMenu1 = new javax.swing.JMenu();
 		jMenu2 = new javax.swing.JMenu();
 		btnCalculateBMI = new javax.swing.JMenuItem();
@@ -214,18 +212,6 @@ public class HSInputWindow extends javax.swing.JFrame {
 
 		jMenuBar1.setBorder(null);
 
-		btnFileMenu.setText("File");
-
-		btnOpenFile.setText("Open");
-		btnOpenFile.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnOpenFileActionPerformed(evt);
-			}
-		});
-		btnFileMenu.add(btnOpenFile);
-
-		jMenuBar1.add(btnFileMenu);
-
 		jMenu1.setText("Tools");
 
 		btnCalculateBMI.setText("Calculate BMI");
@@ -340,9 +326,7 @@ public class HSInputWindow extends javax.swing.JFrame {
 	private javax.swing.JMenuItem btnCalculateBMI;
 	private javax.swing.JMenuItem searchByDate;
 	private javax.swing.JMenuItem searchTotalsByDate;
-	private javax.swing.JMenu btnFileMenu;
 	private javax.swing.JButton btnGenerateReport;
-	private javax.swing.JMenuItem btnOpenFile;
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel2;
 	private javax.swing.JLabel jLabel3;

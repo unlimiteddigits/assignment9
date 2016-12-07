@@ -277,6 +277,10 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 	
 	view.addReportButtonActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
+			if(!okToSubmit()){
+				return;
+			}
+			
 			String[] patientInfo = { model.getName(), view.getDateText(), model.getAge(),
 					model.getHeightFeet(), model.getHeightInches(), model.getWeight(),
 					model.getCholesterol(), model.getBmi(), model.getBloodPressure(),model.getCholesterolRisk()
@@ -286,7 +290,7 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 
 			DataBase insert = new DataBase(patientInfo);
 			view.clearComponents();
-			
+
 			insert.insertRecord();
 		}
 	});
@@ -458,5 +462,17 @@ view.addBmiMenuCalculationactionListener(new ActionListener(){
 		
 	}
 	
-	
+	public boolean okToSubmit(){
+		if(view.getCholesterolText().trim().equals("")
+		|| view.getBloodPressureText().trim().equals("")
+		|| view.getBmiText().trim().equals("")
+		|| view.getWeightText().trim().equals("")
+		|| view.getPatientHeightInFeetText().trim().equals("")
+		|| view.getPatientHeightInInchesText().trim().equals("")
+		|| view.getAgeText().trim().equals("")
+		|| view.getDateText().trim().equals("")){
+			return false;
+		}
+		return true;
+	}
 }
